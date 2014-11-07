@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106160155) do
+ActiveRecord::Schema.define(version: 20141107131438) do
 
   create_table "announcement_ratings", force: true do |t|
     t.integer  "rating"
@@ -31,12 +31,15 @@ ActiveRecord::Schema.define(version: 20141106160155) do
   create_table "announcements", force: true do |t|
     t.string   "type"
     t.string   "body"
-    t.string   "deadline"
-    t.integer  "course_id"
+    t.date     "deadline"
+    t.integer  "course_id",  null: false
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "announcements", ["course_id"], name: "index_announcements_on_course_id", using: :btree
+  add_index "announcements", ["creator_id"], name: "index_announcements_on_creator_id", using: :btree
 
   create_table "answer_ratings", force: true do |t|
     t.string   "rating"

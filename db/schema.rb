@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106160155) do
+ActiveRecord::Schema.define(version: 20141106221749) do
 
   create_table "announcement_ratings", force: true do |t|
     t.integer  "rating"
@@ -103,10 +103,10 @@ ActiveRecord::Schema.define(version: 20141106160155) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",       null: false
-    t.string   "password"
-    t.string   "email",      null: false
-    t.string   "picture",    null: false
+    t.string   "name",               null: false
+    t.string   "encrypted_password"
+    t.string   "email",              null: false
+    t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

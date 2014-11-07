@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :subscribing_courses, foreign_key: 'course_id', :through => :course_subscription, :condition => "accepted = 1"
   has_many :course_invitations, class_name: "CourseInvitation"
   has_many :reminders
+  has_many :materials
   has_many :answers, dependent: :destroy
 
   attr_accessor :password

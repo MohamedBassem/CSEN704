@@ -16,7 +16,15 @@ class Question < ActiveRecord::Base
     average = sum/ratings.size
   end
 
-  def add_answer(user, dict)
-    self.answers.create(user: user, dict)
+  def creator
+    creator
+  end
+
+  def course
+    course
+  end
+
+  def add_answer(user)
+    self.answers.create(user: user)
   end
 end

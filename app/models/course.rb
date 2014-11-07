@@ -18,12 +18,12 @@ class Course < ActiveRecord::Base
     subscritpion.save
   end
 
-  def add_material(user, dict)
-    self.materials.create(user: user, dict)
+  def add_material(user)
+    self.materials.create(user: user)
   end
 
-  def add_question(user, dict)
-    self.questions.create(creator: user, dict)
+  def add_question(user)
+    self.questions.create(creator: user)
   end
 
   def accept_subscription(user)

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rating: 
+  creator_id: 
+  announcement_id: 
+
+two:
+  rating: 
+  creator_id: 
+  announcement_id: 

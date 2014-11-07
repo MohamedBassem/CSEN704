@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
     @question_rating.each do |rating|
       @sum += rating;
     end
-    @average = @sum/@question_rating.size 
+    @average = @sum/@question_rating.size
   end
 
 end

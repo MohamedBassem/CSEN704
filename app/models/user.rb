@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
     self.encrypted_password = Digest::MD5.hexdigest(@password)
   end
 
-  def create_reminder(announcement, dict)
-    self.reminders.create(announcement: announcement, dict)
+  def create_reminder(announcement)
+    self.reminders.create(announcement: announcement)
   end
 
   def create_course(dict)

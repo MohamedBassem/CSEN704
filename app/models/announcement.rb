@@ -2,20 +2,21 @@ class Announcement < ActiveRecord::Base
 
   belongs_to :user, inverse_of: :announcements, foreign_key: :creator_id
   belongs_to :course, inverse_of: :announcements
+  has_many :ratings, class_name: "AnnouncementRating" ,inverse_of: :announcement
 
-  validates :course, :body, :type , presence: true
-  validates :type, inclusion: { in: [ "deadline", "general" ] }
+  validates :course, :body, :announcemen_type , presence: true
+  validates :announcement_type, inclusion: { in: [ "deadline", "general" ] }
   validates :deadline, presence: true, if: :deadline?
 
   scope :of_course, ->(course) { where course: course }
   scope :of_user, ->(user) { where user: user }
 
   def deadline?
-    type == "deadline"
+    announcement_type == "deadline"
   end
 
   def general?
-    type == "general"
+    announcement_type == "general"
   end
 
   def automated?

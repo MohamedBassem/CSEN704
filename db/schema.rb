@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107154625) do
-
-  create_table "announcement_ratings", force: true do |t|
-    t.integer  "rating"
-    t.integer  "creator_id"
-    t.integer  "announcement_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-
+ActiveRecord::Schema.define(version: 20141107165724) do
 
   create_table "announcement_reports", force: true do |t|
     t.string   "announcement_id"

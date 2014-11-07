@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :course_invitations, class_name: "CourseInvitation"
   has_many :reminders
   has_many :course_subscription
+  has_many :materials
   has_many :answers, dependent: :destroy
 
   attr_accessor :password
@@ -46,6 +47,10 @@ class User < ActiveRecord::Base
 
   def encrypt_password
     self.encrypted_password = Digest::MD5.hexdigest(@password) if @password
+  end
+
+  def create_reminder(announcement)
+    self.reminders.create(announcement: announcement)
   end
 
   def create_course(dict)

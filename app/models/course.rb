@@ -6,9 +6,8 @@ class Course < ActiveRecord::Base
   has_many :course_subscriptions, :inverse_of => :course
   has_many :users
   has_many :announcements, inverse_of: :course
-
+  has_many :materials, inverse_of: :course
   validates :name, :presence => true, :length => {in: 1..100}
-
 
   def ask_to_subscribe(user)
     @subscritpion = CourseSubscription.new
@@ -16,6 +15,14 @@ class Course < ActiveRecord::Base
     @subscritpion.course = self
     @subscritpion.accepted = 0
     @subscritpion.save
+  end
+
+  def add_material(user)
+    self.materials.create(user: user)
+  end
+
+  def add_question(user)
+    self.questions.create(creator: user)
   end
 
   def accept_subscription(user)

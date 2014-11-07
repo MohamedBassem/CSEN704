@@ -31,5 +31,8 @@ class Announcement < ActiveRecord::Base
     DateTime.now.to_date > deadline
   end
 
+  def add_report(dict)
+    self.reports.create(dict)
+  end
 
 end

@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
+<<<<<<< HEAD
 
 	has_many :owned_courses, :foreign_key => 'owner_id', :class_name => 'Course'
 	has_many :subscribing_courses, :foreign_key: 'course_id', :through => :course_subscription, :condition => "accepted = 1"
+	has_many :course_invitations, class_name: "CourseInvitation"
 	has_many :reminders
+	has_many :answers, dependent: :destroy
 
 	attr_accessor :password
 

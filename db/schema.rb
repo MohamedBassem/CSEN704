@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20141107154625) do
     t.integer  "announcement_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
+
 
   create_table "announcement_reports", force: true do |t|
     t.string   "announcement_id"
@@ -29,22 +29,17 @@ ActiveRecord::Schema.define(version: 20141107154625) do
   end
 
   create_table "announcements", force: true do |t|
-    t.string   "type"
+    t.string   "announcement_type"
     t.string   "body"
-    t.string   "deadline"
-    t.integer  "course_id"
+    t.date     "deadline"
+    t.integer  "course_id",         null: false
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "answer_ratings", force: true do |t|
-    t.string   "rating"
-    t.integer  "answer_id"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "announcements", ["course_id"], name: "index_announcements_on_course_id", using: :btree
+  add_index "announcements", ["creator_id"], name: "index_announcements_on_creator_id", using: :btree
 
   create_table "answers", force: true do |t|
     t.string   "body"
@@ -60,6 +55,8 @@ ActiveRecord::Schema.define(version: 20141107154625) do
     t.integer  "invited_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invitation_hash",                 null: false
+    t.boolean  "expired",         default: false
   end
 
   create_table "course_subscriptions", force: true do |t|
@@ -87,18 +84,26 @@ ActiveRecord::Schema.define(version: 20141107154625) do
     t.datetime "updated_at"
   end
 
-  create_table "question_ratings", force: true do |t|
-    t.integer  "rating"
-    t.integer  "question_id"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "questions", force: true do |t|
     t.string   "body"
     t.string   "course_id"
     t.string   "creator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions_tags", id: false, force: true do |t|
+    t.integer "question_id"
+    t.integer "tag_id"
+  end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "creator_id"
+    t.integer  "rating"
+    t.string   "type"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.integer  "announcement_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,6 +115,10 @@ ActiveRecord::Schema.define(version: 20141107154625) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.date     "deadline"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string "body", limit: 30
   end
 
   create_table "users", force: true do |t|

@@ -11,4 +11,5 @@ class AnnouncementReport < ActiveRecord::Base
   def announcement
     announcement
   end
+  
 end

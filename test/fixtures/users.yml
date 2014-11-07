@@ -4,6 +4,7 @@ farghal:
   name: Farghal
   encrypted_password: redhat
   email: mohamed@farghal.com
+  verified: 1
 
 
 bassem:
@@ -11,8 +12,10 @@ bassem:
   encrypted_password: redhat
   email: shiko@siko.com
   picture: somepath
+  verified: 1
 
 alaa:
   name: Alaa Maher
   encrypted_password: redhat
   email: sayed@sayed.net
+  verified: 1

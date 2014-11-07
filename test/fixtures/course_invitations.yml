@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  inviter_id: 
-  course_id: 
-  invited_id: 
+# one:
+#   inviter_id: 
+#   course_id: 
+#   invited_id: 
 
-two:
-  inviter_id: 
-  course_id: 
-  invited_id: 
+# two:
+#   inviter_id: 
+#   course_id: 
+#   invited_id: 

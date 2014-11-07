@@ -4,7 +4,7 @@ class Course < ActiveRecord::Base
   belongs_to :owner, :foreign_key => 'owner_id', :class_name => 'User'
   has_many :questions, :inverse_of => :course
   has_many :course_subscriptions, :inverse_of => :course
-  has_many :subscribed_users, :foreign_key => 'user_id', :through => :course_subscription, :condition => "accepted = 1"
+  has_many :subscribed_users, :foreign_key => 'user_id', :through => :course_subscription
   has_many :announcements, inverse_of: :course
 
   validates :name, :presence => true, :length => {in: 1..100}

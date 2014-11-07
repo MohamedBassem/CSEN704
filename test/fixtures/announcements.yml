@@ -1,15 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  type: 
-  body: MyString
-  deadline: MyString
-  course_id: 
-  creator_id: 
+# one:
+#   announcement_type: deadline 
+#   body: MyString
+#   deadline: 2014-12-01
+#   course: advanced
+#   creator: farghal
 
-two:
-  type: 
-  body: MyString
-  deadline: MyString
-  course_id: 
-  creator_id: 
+# two:
+#   announcement_type: general
+#   body: MyString
+#   deadline: 2014-12-01
+#   course: advanced
+#   creator: bassem

@@ -1,18 +1,60 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "User should be created and authenticate with valid data" do
-    user = User.new(name:"t", email:"a@a.c", password:"redhat", picture:"p")
-    assert user.valid?
+
+  test "User should be created succssfully with valid data" do
+    user = User.new name: "test", email: "m@mesho.com", password: "redhat", verified: 1
     user.save
-    a = User.authenticate "a@a.c", "redhat"
-    assert_equal a.name, "t"
-   end
+    assert user.valid?, "User is not valid"
+    assert User.find_by(email: "m@mesho.com"), "User was not found in the database"
+  end
 
-   test "User should be able to create a course" do 
+  test "User should not be listed if not verified" do
+    user = User.new name: "test", email: "m@mesho.com", password: "redhat", verified: 0
+    user.save
+    assert_not User.find_by email: "m@mesho.com"
+    user.verify
+    assert User.find_by email: "m@mesho.com"
+  end
 
-    users(:farghal).owned_courses.create name: "Mesho"
+  test "User cannot be created with invalid email" do
+    user = User.new(name:"t", email:"a@a", password:"redhat", picture:"p")
+    assert_not user.valid?, "User created with invalid email a@a"
+  end
 
-   end
+  test "User cannot be created with password less than 6 chars" do 
+    user = User.new(name:"t", email:"a@a.com", password:"reat", picture:"p")
+    assert_not user.valid?, "User created with invalid email reat"
+  end
+
+  test "User must have a name" do 
+    user = User.new(email:"a@a.com", password:"reat", picture:"p")
+    assert_not user.valid?, "User created without a name"
+  end
+
+  test "User should generate a random verification code on creation" do
+    User.create name: "test", email: "m@mesho.com", password: "redhat", verified: 0
+    User.create name: "test", email: "m2@mesho.com", password: "redhat", verified: 0
+    code1 = User.unverified.find_by(email: "m@mesho.com").verification_code
+    assert code1.length > 0, "Code was not generated"
+    code2 = User.unverified.find_by(email: "m2@mesho.com").verification_code
+    assert_not_equal code1, code2, "The code generated is not random"
+  end
+
+  test "User should be able to authenticate" do
+    User.create name: "test", email: "m@mesho.com", password: "redhat", verified: 1
+    user = User.authenticate "m@mesho.com", "redhat"
+    assert_equal user.name, "test"
+
+  end
+
+  test "User should be able to create course" do
+    users(:farghal).create_course(name: "CSEN101")
+    course = Course.find_by(name: "CSEN101")
+    assert course, "Course was not created"
+
+
+  end
+
 
 end

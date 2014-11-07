@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  body: MyString
-  course_id: MyString
-  creator_id: MyString
+# one:
+#   body: MyString
+#   course_id: MyString
+#   creator_id: MyString
 
-two:
-  body: MyString
-  course_id: MyString
-  creator_id: MyString
+# two:
+#   body: MyString
+#   course_id: MyString
+#   creator_id: MyString

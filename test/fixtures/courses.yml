@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+advanced:
+  name: Advanced Lab
   description: MyString
   course_code: MyString
-  owner_id: 
+  owner: alaa
 
 two:
   name: MyString
   description: MyString
   course_code: MyString
-  owner_id: 
+  owner: farghal 

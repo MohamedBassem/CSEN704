@@ -34,21 +34,12 @@ class User < ActiveRecord::Base
     self.encrypted_password = Digest::MD5.hexdigest(@password)
   end
 
-  def create_reminder(announcement)
-    self.reminders.create(announcement: announcement)
+  def create_reminder(announcement, dict)
+    self.reminders.create(announcement: announcement, dict)
   end
 
   def create_course(dict)
     self.owned_courses.create(dict)
-  end
-
-  def add_question(course, dict)
-    self.owned_courses.each do |c|
-      if c == course then
-        course.questions.create(dict)
-        break
-      end
-    end 
   end
 
   def ask_to_follow(course)

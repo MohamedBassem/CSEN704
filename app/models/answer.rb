@@ -1,16 +1,16 @@
 class Answer < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :question
+  belongs_to :user, :foreign_key => 'user_id'
+  belongs_to :question, :foreign_key => 'question_id'
   has_many :ratings, class_name: "AnswerRating" ,inverse_of: :answer
-  validates_presence_of :user
-  validates_presence_of :question
+  
+  validates :user, presence: true
+  validates :question, presence: true
 
-  def get_rating()
-    @answer_rating = AnswerRating.find(:all, :conditions => {:answer_id => self.id})
-    @answer_rating.each do |rating|
-      @sum += rating;
+  def rating
+    self.ratings.each do |rating|
+      sum += rating;
     end
-    @average = @sum/@answer_rating.size
+    average = sum/ratings.size
   end
 
 end

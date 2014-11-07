@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
 	has_many :owned_courses, :foreign_key => 'owner_id', :class_name => 'Course'
+	has_many :subscribing_courses, :foreign_key: 'course_id', :through => :course_subscription, :condition => "accepted = 1"
+	has_many :reminders
 
 	attr_accessor :password
 
@@ -28,6 +30,14 @@ class User < ActiveRecord::Base
 
 	def encrypt_password
 		self.encrypted_password = Digest::MD5.hexdigest(@password)
+	end
+
+	def create_course(dict)
+		self.owned_courses.create(dict)
+	end
+
+	def ask_to_follow(course)
+
 	end
 
 end

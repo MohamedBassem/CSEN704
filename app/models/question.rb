@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
   belongs_to :course
   has_many :answers
   has_and_belongs_to_many :tags
+  has_many :ratings, class_name: "QuestionRating" ,inverse_of: :question
 
   validates_presence_of :user
   validates_presence_of :course

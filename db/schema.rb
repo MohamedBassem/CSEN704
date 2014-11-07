@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107151516) do
-
-  create_table "announcement_ratings", force: true do |t|
-    t.integer  "rating"
-    t.integer  "creator_id"
-    t.integer  "announcement_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141107165724) do
 
   create_table "announcement_reports", force: true do |t|
     t.string   "announcement_id"
@@ -29,10 +21,10 @@ ActiveRecord::Schema.define(version: 20141107151516) do
   end
 
   create_table "announcements", force: true do |t|
-    t.string   "type"
+    t.string   "announcement_type"
     t.string   "body"
     t.date     "deadline"
-    t.integer  "course_id",  null: false
+    t.integer  "course_id",         null: false
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,14 +32,6 @@ ActiveRecord::Schema.define(version: 20141107151516) do
 
   add_index "announcements", ["course_id"], name: "index_announcements_on_course_id", using: :btree
   add_index "announcements", ["creator_id"], name: "index_announcements_on_creator_id", using: :btree
-
-  create_table "answer_ratings", force: true do |t|
-    t.string   "rating"
-    t.integer  "answer_id"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "answers", force: true do |t|
     t.string   "body"
@@ -84,14 +68,6 @@ ActiveRecord::Schema.define(version: 20141107151516) do
     t.datetime "updated_at"
   end
 
-  create_table "question_ratings", force: true do |t|
-    t.integer  "rating"
-    t.integer  "question_id"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "questions", force: true do |t|
     t.string   "body"
     t.string   "course_id"
@@ -103,6 +79,17 @@ ActiveRecord::Schema.define(version: 20141107151516) do
   create_table "questions_tags", id: false, force: true do |t|
     t.integer "question_id"
     t.integer "tag_id"
+  end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "creator_id"
+    t.integer  "rating"
+    t.string   "type"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.integer  "announcement_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reminders", force: true do |t|

@@ -1,6 +1,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
+  has_many :ratings, class_name: "AnswerRating" ,inverse_of: :answer
   validates_presence_of :user
   validates_presence_of :question
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107131438) do
+ActiveRecord::Schema.define(version: 20141107151516) do
 
   create_table "announcement_ratings", force: true do |t|
     t.integer  "rating"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20141107131438) do
     t.integer  "invited_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invitation_hash",                 null: false
+    t.boolean  "expired",         default: false
   end
 
   create_table "courses", force: true do |t|
@@ -98,11 +100,20 @@ ActiveRecord::Schema.define(version: 20141107131438) do
     t.datetime "updated_at"
   end
 
+  create_table "questions_tags", id: false, force: true do |t|
+    t.integer "question_id"
+    t.integer "tag_id"
+  end
+
   create_table "reminders", force: true do |t|
     t.integer  "creator_id"
     t.integer  "annoucment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string "body", limit: 30
   end
 
   create_table "users", force: true do |t|

@@ -18,14 +18,14 @@ class User < ActiveRecord::Base
   def self.authenticate email, password
     if email.present? && password.present?
       if user = User.find_by(email: email)
-        if user.is_valid_password(password)
+        if user.valid_password? password
           user
         end
       end
     end
   end
 
-  def is_valid_password(password)
+  def valid_password?(password)
     self.encrypted_password == Digest::MD5.hexdigest(password)
   end
 

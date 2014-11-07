@@ -5,8 +5,4 @@ class CourseSubscription < ActiveRecord::Base
 
   validate :user, :course, :presence => true
 
-  def accept
-    self.update accepted: 1
-  end
-
 end

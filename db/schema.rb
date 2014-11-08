@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107201526) do
+ActiveRecord::Schema.define(version: 20141108070204) do
 
   create_table "announcement_reports", force: true do |t|
     t.string   "announcement_id"
@@ -116,14 +116,15 @@ ActiveRecord::Schema.define(version: 20141107201526) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",               null: false
+    t.string   "name",                               null: false
     t.string   "encrypted_password"
-    t.string   "email",              null: false
+    t.string   "email",                              null: false
     t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "verified"
+    t.boolean  "verified",           default: false
     t.string   "verification_code"
+    t.string   "facebook_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

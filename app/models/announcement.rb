@@ -4,7 +4,7 @@ class Announcement < ActiveRecord::Base
   belongs_to :course, inverse_of: :announcements
   has_many :ratings, class_name: "AnnouncementRating" ,inverse_of: :announcement
   has_many :reports, class_name: "AnnouncementReport" ,inverse_of: :announcement
-  validates :course, :body, :announcemen_type , presence: true
+  validates :course, :body, :announcement_type , presence: true
   validates :announcement_type, inclusion: { in: [ "deadline", "general" ] }
   validates :deadline, presence: true, if: :deadline?
 

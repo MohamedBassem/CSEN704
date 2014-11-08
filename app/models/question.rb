@@ -10,10 +10,13 @@ class Question < ActiveRecord::Base
   validates :course, presence: true
 
   def rating
+    sum = 0
     self.ratings.each do |rating|
       sum += rating;
     end
-    average = sum/ratings.size
+    if ratings.size !=0 then
+      average = sum / ratings.size
+    end
   end
 
   def creator

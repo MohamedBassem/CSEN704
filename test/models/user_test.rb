@@ -56,5 +56,12 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
-
+  test "User should be able to create reminder" do
+    user = User.create name: "test", email: "m@mesho.com", password: "redhat", verified: 1
+    announcement = Announcement.new announcement_type: "deadline", body: "this is an announcement", deadline:  Date.current.tomorrow, course_id: 1, creator_id: 1
+    announcement.save
+    user.create_reminder(:announcement)
+    reminder = Reminder.find_by(id: 1)
+    assert reminder, "Reminder was not created"
+  end
 end

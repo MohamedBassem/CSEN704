@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :reminders
   has_many :materials
   has_many :answers, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   attr_accessor :password
 

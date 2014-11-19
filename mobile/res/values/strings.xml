@@ -4,5 +4,10 @@
     <string name="app_name">CSEN704</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+    <!-- Login Fragment -->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_login">Login</string>
 
 </resources>

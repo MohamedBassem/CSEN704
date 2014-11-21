@@ -14,7 +14,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction().add(R.id.container, new QuestionStreamFragment()).commit();
+
+			getFragmentManager().beginTransaction().add(R.id.container, new RemindersFragment()).commit();
+
 		}
 	}
 
@@ -34,9 +36,9 @@ public class MainActivity extends Activity {
 	}
 
 	public <T> void switchFragment(Class<T> fragmet, Bundle bundle){
-		if( fragmet == LoginFragment.class){
-
-		}
+//		if( fragmet == MainFragment.class){
+//
+//		}
 	}
 
 	public void replaceContentFragment(Fragment fragment){

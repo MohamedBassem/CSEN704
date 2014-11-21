@@ -6,7 +6,9 @@
     <color name="question_info">#666666</color>
     <color name="answer_title">#000000</color>
     <color name="hr">#BBBBBB</color>
-    <color name="green">#00FF00</color>
+    <color name="green">#19A347</color>
+    <color name="red">#EC4545</color>
+    <color name="orange">#FF8533</color>
     <color name="transparent">#00000000</color>
     
 </resources>

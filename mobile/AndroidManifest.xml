@@ -16,11 +16,18 @@
         <activity
             android:name="com.example.csen704.MainActivity"
             android:label="@string/app_name" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.csen704.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+            
         </activity>
         <activity
             android:name="com.example.csen704.QuestionActivity"

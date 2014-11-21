@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/reminder_widget"
+    android:background="@color/green"
+    android:padding="@dimen/padding_small"
+    android:layout_margin="@dimen/margin_small" >
+
+    <TextView
+        android:id="@+id/reminder_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/text_small"
+        android:text="Advanced lab milestone2 submission" />
+
+    <TextView
+        android:id="@+id/reminder_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/reminder_text"
+        android:layout_below="@id/reminder_text"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="2 days left" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignBottom="@id/reminder_deadline"
+        android:layout_alignParentRight="true"
+        android:text="CSEN701"
+        android:textColor="@color/question_info"
+        android:textSize="@dimen/text_small" />
+
+</RelativeLayout>

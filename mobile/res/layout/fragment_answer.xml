@@ -38,10 +38,10 @@
         android:layout_alignLeft="@+id/avatar"
         android:layout_below="@+id/avatar"
         android:layout_marginTop="@dimen/margin_small"
-        android:text="What is the value of of Cos(45) and Sin(30)?"
-        android:textColor="@color/question_title"
+        android:text="I think it's something in between 0.35 and 0.5. however you can use Google to know the answer. asly? "
+        android:textColor="@color/answer_title"
         android:textSize="@dimen/normal"
-        android:textStyle="bold" />
+        />
     
     <View
         android:id="@+id/hr"

@@ -1,4 +1,4 @@
-package com.example.csend704;
+package com.example.csen704.views;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

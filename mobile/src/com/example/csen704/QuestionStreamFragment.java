@@ -29,7 +29,7 @@ public class QuestionStreamFragment extends Fragment{
 	
 	public void loadStream() {
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 10; i++)
 			transaction.add(R.id.questions_container, new QuestionFragment());
 		transaction.commit();
 	}

@@ -1,4 +1,4 @@
-package com.example.csend704;
+package com.example.csen704.views;
 
 import com.squareup.picasso.Picasso.LoadedFrom;
 import com.squareup.picasso.Target;

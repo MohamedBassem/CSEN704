@@ -21,12 +21,16 @@ public class QuestionStreamFragment extends Fragment{
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_question_stream, container,
 				false);
+		
+		loadStream();
+		
 		return rootView;
 	}
 	
 	public void loadStream() {
 		FragmentTransaction transaction = getFragmentManager().beginTransaction();
-		transaction.add(R.layout.fragment_question_stream, new QuestionFragment());
+		for (int i = 0; i < 6; i++)
+			transaction.add(R.id.questions_container, new QuestionFragment());
 		transaction.commit();
 	}
 	

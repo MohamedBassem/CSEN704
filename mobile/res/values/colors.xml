@@ -2,8 +2,8 @@
 <resources>
     
     <color name="post_background">#FFFFFF</color>
-    <color name="question_title">#000000</color>
-    <color name="question_info">#333333</color>
+    <color name="question_title">#001D56</color>
+    <color name="question_info">#666666</color>
     <color name="hr">#BBBBBB</color>
     
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="post_background">#FFFFFF</color>
+    <color name="question_title">#000000</color>
+    <color name="question_info">#333333</color>
+    <color name="hr">#BBBBBB</color>
+    
+</resources>

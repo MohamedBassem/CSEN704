@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 
 		if (savedInstanceState == null) {
 
-			getFragmentManager().beginTransaction().add(R.id.container, new RemindersFragment()).commit();
+			getFragmentManager().beginTransaction().add(R.id.container, new AnnouncementsFragment()).commit();
 
 		}
 	}

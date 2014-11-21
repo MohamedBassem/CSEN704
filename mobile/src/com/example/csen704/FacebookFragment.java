@@ -1,5 +1,7 @@
 package com.example.csen704;
 
+import java.util.Arrays;
+
 import com.facebook.Session;
 import com.facebook.SessionState;
 
@@ -28,6 +30,7 @@ public class FacebookFragment extends Fragment {
 		View view = inflater.inflate(R.layout.facebook, container, false);
 		authButton = (LoginButton) view.findViewById(R.id.authButton);
 		authButton.setFragment(this);
+		authButton.setReadPermissions(Arrays.asList("user_likes", "user_status", "user_friends", "user_birthday"));
 
 		return view;
 	}

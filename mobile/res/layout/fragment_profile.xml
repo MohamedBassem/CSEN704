@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/selection_profile_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="@dimen/padding_large"
+        facebook:preset_size="large" />
+
+    <TextView
+        android:id="@+id/selection_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selection_profile_pic"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/com_facebook_blue"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/selection_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selection_user_name"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/com_facebook_likeview_text_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/courses_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/selection_birthday"
+        android:fontFamily="sans-serif-light"
+        android:maxLines="2"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingTop="@dimen/padding_large"
+        android:text="@string/courses_list_header"
+        android:textColor="@color/maroon"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/courses_list_header"
+        android:paddingBottom="@dimen/padding_extra_large" >
+
+        <LinearLayout
+            android:id="@+id/subscribed_courses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/com_facebook_blue"
+        android:gravity="center"
+        android:text="@string/share"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/courses_list_header"
-        android:paddingBottom="@dimen/padding_extra_large" >
+        android:paddingBottom="@dimen/padding_largs" >
 
         <LinearLayout
             android:id="@+id/subscribed_courses"

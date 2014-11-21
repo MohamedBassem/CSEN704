@@ -2,4 +2,15 @@
 <resources>
     <color name="maroon">#990000</color>
     <color name="white">#E0E0E0</color>
+    <color name="post_background">#FFFFFF</color>
+    <color name="question_title">#001D56</color>
+    <color name="announcement_title">#000000</color>
+    <color name="question_info">#666666</color>
+    <color name="answer_title">#000000</color>
+    <color name="hr">#BBBBBB</color>
+    <color name="green">#19A347</color>
+    <color name="red">#EC4545</color>
+    <color name="orange">#FF8533</color>
+    <color name="transparent">#00000000</color>
+    
 </resources>

@@ -22,6 +22,7 @@ public class MainActivity extends FragmentActivity {
 
 	private final int HOME_ID = -1;
 	private final int CREATE_COURSE_ID = -2;
+	private final int PROFILE_ID = -3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,12 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void getCourses(){
-		CourseWrapper[] courses = new CourseWrapper[7];
-		courses[0] = new CourseWrapper("Home", HOME_ID);
-		courses[1] = new CourseWrapper("Create Course", CREATE_COURSE_ID);
+		CourseWrapper[] courses = new CourseWrapper[8];
+		courses[0] = new CourseWrapper(getSharedPreferences(Config.SETTING, 0).getString(Config.USERNAME, "UNKNOWN"), PROFILE_ID);
+		courses[1] = new CourseWrapper("Home", HOME_ID);
+		courses[2] = new CourseWrapper("Create Course", CREATE_COURSE_ID);
 		for(int i=0;i<5;i++){
-			courses[i+2] = new CourseWrapper("Course " + i, i);
+			courses[i+3] = new CourseWrapper("Course " + i, i);
 		}
 		final SidebarListAdapter adapter = new SidebarListAdapter(this, courses);
 		ListView listview = (ListView) findViewById(R.id.left_drawer);
@@ -56,7 +58,9 @@ public class MainActivity extends FragmentActivity {
 	    		  switchFragment(MainFragment.class, bundle);
 	    	  }else if(course.id == CREATE_COURSE_ID){
 		    	  startActivity(new Intent(getApplicationContext(),CreateCourseActivity.class));
-	    	  } else{
+	    	  }else if(course.id == PROFILE_ID){
+	    		  switchFragment(ProfileFragment.class, bundle);
+	    	  }else{
 	    		  bundle.putInt("courseId", course.id );
 		    	  switchFragment(CourseFragment.class, bundle);
 	    	  }
@@ -102,6 +106,8 @@ public class MainActivity extends FragmentActivity {
 			f = new CourseFragment();
 		}else if(fragment == MainFragment.class){
 			f = new MainFragment();
+		}else if(fragment == ProfileFragment.class){
+			f = new ProfileFragment();
 		}
 		f.setArguments(bundle);
 		replaceContentFragment(f);

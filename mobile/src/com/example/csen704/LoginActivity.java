@@ -1,14 +1,16 @@
 package com.example.csen704;
 
+import com.facebook.android.Facebook;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,8 +19,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-public class LoginActivity extends Activity {
+public class LoginActivity extends FragmentActivity {
 
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
 			"admin@csen704.com:admin" };
@@ -35,11 +36,26 @@ public class LoginActivity extends Activity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
+	FacebookFragment facebookFragment;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		if (savedInstanceState == null) {
+	        // Add the fragment on initial activity setup
+	        facebookFragment = new FacebookFragment();
+	        getSupportFragmentManager()
+	        .beginTransaction()
+	        .add(android.R.id.content, facebookFragment)
+	        .commit();
+	    } else {
+	        // Or set the fragment from restored state info
+	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
+	        .findFragmentById(android.R.id.content);
+	    }
+		
 		setContentView(R.layout.activity_login);
 		if(getSharedPreferences(Config.SETTING, 0).getAll().size() > 0){
 			startMain();
@@ -74,7 +90,8 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
-	}
+	    }
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -169,6 +186,7 @@ public class LoginActivity extends Activity {
 		finish();
 	}
 
+	
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
@@ -223,5 +241,7 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 		}
+		
+		
 	}
 }

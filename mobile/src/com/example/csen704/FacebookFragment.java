@@ -2,7 +2,6 @@ package com.example.csen704;
 
 import java.util.Arrays;
 
-import android.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,7 +33,7 @@ public class FacebookFragment extends Fragment {
 		authButton.setFragment(this);
 		authButton.setReadPermissions(Arrays.asList("user_likes", "user_status", "user_friends", "user_birthday"));
 
-		return view;
+		return null;
 	}
 
 	@Override

@@ -21,7 +21,17 @@ public class QuestionStreamFragment extends Fragment{
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_question_stream, container,
 				false);
-//		courseId = getArguments().getInt("courseId", -1);
+		Bundle bundle = getArguments();
+		if(bundle != null){
+			courseId = bundle.getInt("courseId", -1) ;
+		}else{
+			courseId = -1;
+		}
+
+		if(courseId == -1){
+			rootView.findViewById(R.id.add_question_box).setVisibility(View.GONE);
+		}
+
 		loadStream();
 
 		return rootView;

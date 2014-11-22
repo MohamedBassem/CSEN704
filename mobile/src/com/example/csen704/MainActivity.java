@@ -35,10 +35,11 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void getCourses(){
-		CourseWrapper[] courses = new CourseWrapper[6];
+		CourseWrapper[] courses = new CourseWrapper[7];
 		courses[0] = new CourseWrapper("Home", HOME_ID);
+		courses[1] = new CourseWrapper("Create Course", CREATE_COURSE_ID);
 		for(int i=0;i<5;i++){
-			courses[i+1] = new CourseWrapper("Course " + i, i);
+			courses[i+2] = new CourseWrapper("Course " + i, i);
 		}
 		final SidebarListAdapter adapter = new SidebarListAdapter(this, courses);
 		ListView listview = (ListView) findViewById(R.id.left_drawer);
@@ -51,13 +52,13 @@ public class MainActivity extends FragmentActivity {
 	          int position, long id) {
 	    	  Bundle bundle = new Bundle();
 	    	  CourseWrapper course = (CourseWrapper) parent.getItemAtPosition(position);
-	    	  if(course.id != HOME_ID){
-		    	  bundle.putInt("courseId", course.id );
-		    	  switchFragment(CourseFragment.class, bundle);
-	    	  }else if(course.id != CREATE_COURSE_ID){
-		    	  switchFragment(CourseFragment.class, bundle);
-	    	  } else{
+	    	  if(course.id == HOME_ID){
 	    		  switchFragment(MainFragment.class, bundle);
+	    	  }else if(course.id == CREATE_COURSE_ID){
+		    	  startActivity(new Intent(getApplicationContext(),CreateCourseActivity.class));
+	    	  } else{
+	    		  bundle.putInt("courseId", course.id );
+		    	  switchFragment(CourseFragment.class, bundle);
 	    	  }
 	    	  DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 	    	  mDrawerLayout.closeDrawers();

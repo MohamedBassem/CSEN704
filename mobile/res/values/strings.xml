@@ -29,6 +29,16 @@
     <string name="course_name">Course Name</string>
     <string name="course_code">Course Code</string>
     <string name="course_description">Course Description</string>
-    <string name="title_activity_create_course">CreateCourseActivity</string>
+    <string name="title_activity_create_course">Create Course</string>
+    
+     <!-- Question -->
+    <string name="add_question">Post</string>
+    <string name="question_hint">Ask a Question</string>
+    
+     <!-- Answer -->
+    <string name="course__name">Course Name</string>
+    <string name="course__code">Course Code</string>
+    <string name="course__description">Course Description</string>
+    <string name="title_activity_create_answer">Create Answer</string>
 
 </resources>

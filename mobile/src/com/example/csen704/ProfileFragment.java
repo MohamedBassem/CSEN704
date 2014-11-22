@@ -8,17 +8,6 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.facebook.FacebookRequestError;
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.RequestAsyncTask;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
-import com.facebook.widget.ProfilePictureView;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +22,17 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.FacebookRequestError;
+import com.facebook.HttpMethod;
+import com.facebook.Request;
+import com.facebook.RequestAsyncTask;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.ProfilePictureView;
 
 public class ProfileFragment extends Fragment {
 
@@ -82,23 +82,26 @@ public class ProfileFragment extends Fragment {
 		inhabitateCourses();
 
 		shareButton = (Button) view.findViewById(R.id.shareButton);
-		shareButton.setOnClickListener(new View.OnClickListener() {
-		    @Override
-		    public void onClick(View v) {
-		       alert();      
-		    	
-		    }
-		});
-		
-		Session session = Session.getActiveSession();
-		if (session != null && session.isOpened()) {
-			// Get the user's data
-			makeMeRequest(session);
-		}
-		
-		if (savedInstanceState != null) {
-		    pendingPublishReauthorization = 
-		        savedInstanceState.getBoolean(PENDING_PUBLISH_KEY, false);
+		if(getActivity().getSharedPreferences(Config.SETTING, 0).getBoolean(Config.LOGGED_IN_FB, false)){
+			shareButton.setOnClickListener(new View.OnClickListener() {
+			    @Override
+			    public void onClick(View v) {
+			       alert();
+			    }
+			});
+
+			Session session = Session.getActiveSession();
+			if (session != null && session.isOpened()) {
+				// Get the user's data
+				makeMeRequest(session);
+			}
+
+			if (savedInstanceState != null) {
+			    pendingPublishReauthorization =
+			        savedInstanceState.getBoolean(PENDING_PUBLISH_KEY, false);
+			}
+		}else{
+			shareButton.setVisibility(View.GONE);
 		}
 		return view;
 	}
@@ -110,12 +113,14 @@ public class ProfileFragment extends Fragment {
 	    .setMessage("What's on your mind?")
 	    .setView(input)
 	    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int whichButton) {
-	            value = input.getText().toString(); 
+	        @Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+	            value = input.getText().toString();
 	            publishStory();
 	        }
 	    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int whichButton) {
+	        @Override
+			public void onClick(DialogInterface dialog, int whichButton) {
 	        }
 	    }).show();
 	}
@@ -151,7 +156,7 @@ public class ProfileFragment extends Fragment {
 		}
 
 	}
-	
+
 	private boolean isSubsetOf(Collection<String> subset, Collection<String> superset) {
 	    for (String string : subset) {
 	        if (!superset.contains(string)) {
@@ -160,13 +165,13 @@ public class ProfileFragment extends Fragment {
 	    }
 	    return true;
 	}
-	
+
 	private void publishStory() {
 	    Session session = Session.getActiveSession();
 
 	    if (session != null){
 
-	        // Check for publish permissions    
+	        // Check for publish permissions
 	        List<String> permissions = session.getPermissions();
 	        if (!isSubsetOf(PERMISSIONS, permissions)) {
 	            pendingPublishReauthorization = true;
@@ -178,10 +183,11 @@ public class ProfileFragment extends Fragment {
 
 	        Bundle postParams = new Bundle();
 	        postParams.putString("message", value);
-	       
-	        
+
+
 	        Request.Callback callback= new Request.Callback() {
-	            public void onCompleted(Response response) {
+	            @Override
+				public void onCompleted(Response response) {
 	                JSONObject graphResponse = response
 	                                           .getGraphObject()
 	                                           .getInnerJSONObject();
@@ -200,14 +206,14 @@ public class ProfileFragment extends Fragment {
 	                         Toast.LENGTH_SHORT).show();
 	                    } else {
 	                        Toast.makeText(getActivity()
-	                             .getApplicationContext(), 
+	                             .getApplicationContext(),
 	                             "successfully posted." ,
 	                             Toast.LENGTH_LONG).show();
 	                }
 	            }
 	        };
 
-	        Request request = new Request(session, "me/feed", postParams, 
+	        Request request = new Request(session, "me/feed", postParams,
 	                              HttpMethod.POST, callback);
 
 	        RequestAsyncTask task = new RequestAsyncTask(request);
@@ -215,7 +221,7 @@ public class ProfileFragment extends Fragment {
 	    }
 
 	}
-	
+
 	private void makeMeRequest(final Session session) {
 		// Make an API call to get user data and define a
 		// new callback to handle the response.
@@ -250,7 +256,7 @@ public class ProfileFragment extends Fragment {
 			// Get the user's data.
 			makeMeRequest(session);
 		}
-		if (pendingPublishReauthorization && 
+		if (pendingPublishReauthorization &&
 		        state.equals(SessionState.OPENED_TOKEN_UPDATED)) {
 		    pendingPublishReauthorization = false;
 		    publishStory();

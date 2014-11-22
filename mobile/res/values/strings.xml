@@ -9,14 +9,17 @@
     <!-- Profile Fragment -->
     <string name="courses_list_header">Subscribed Courses:- </string>
     <string name="share">Share to Facebook</string>
-
+    <string name="turn_notifications">Turn Notification On/Off</string>
+    
     <!-- Login Fragment -->
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_login">Login</string>
     <string name="title_activity_facebook">FacebookActivity</string>
-    <string name="title_activity_question">QuestionActivity</string>
+    <string name="title_activity_question">View Question</string>
     <string name="megaphone_desc">Announcement</string>
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Create x -->
     <string name="cancel">Cancel</string>
@@ -26,6 +29,14 @@
     <string name="course_name">Course Name</string>
     <string name="course_code">Course Code</string>
     <string name="course_description">Course Description</string>
-    <string name="title_activity_create_course">CreateCourseActivity</string>
-
+    <string name="title_activity_create_course">Create Course</string>
+    
+     <!-- Question -->
+    <string name="add_question">Post</string>
+    <string name="question_hint">Ask a Question</string>
+    
+     <!-- Answer -->
+    <string name="add_answer">Post</string>
+    <string name="answer_hint">Add an Answer</string>
+    
 </resources>

@@ -23,7 +23,12 @@ public class RemindersFragment extends Fragment{
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_reminders, container,
 				false);
-//		courseId = getArguments().getInt("courseId", -1);
+		Bundle bundle = getArguments();
+		if(bundle != null){
+			courseId = bundle.getInt("courseId", -1) ;
+		}else{
+			courseId = -1;
+		}
 		renderReminders();
 		return rootView;
 	}

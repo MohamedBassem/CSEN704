@@ -21,7 +21,14 @@ public class AnnouncementsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_announcements, container,
 				false);
-//		courseId = getArguments().getInt("courseId", -1);
+
+		Bundle bundle = getArguments();
+		if(bundle != null){
+			courseId = bundle.getInt("courseId", -1) ;
+		}else{
+			courseId = -1;
+		}
+
 		renderAnnouncements();
 		return rootView;
 	}

@@ -1,7 +1,5 @@
 package com.example.csen704;
 
-import com.facebook.android.Facebook;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -42,24 +40,25 @@ public class LoginActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
+		setContentView(R.layout.activity_login);
+
+		if(getSharedPreferences(Config.SETTING, 0).getAll().containsKey(Config.SESSION_ID) ){
+			startMain();
+		}
+
 		if (savedInstanceState == null) {
 	        // Add the fragment on initial activity setup
 	        facebookFragment = new FacebookFragment();
 	        getSupportFragmentManager()
 	        .beginTransaction()
-	        .add(android.R.id.content, facebookFragment)
+	        .add(R.id.facebook_login_button, facebookFragment)
 	        .commit();
-	    } else {
+	    }else {
 	        // Or set the fragment from restored state info
 	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
 	        .findFragmentById(android.R.id.content);
 	    }
-		
-		setContentView(R.layout.activity_login);
-		if(getSharedPreferences(Config.SETTING, 0).getAll().size() > 0){
-			startMain();
-		}
 
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
@@ -91,12 +90,11 @@ public class LoginActivity extends FragmentActivity {
 					}
 				});
 	    }
-	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 
@@ -186,7 +184,7 @@ public class LoginActivity extends FragmentActivity {
 		finish();
 	}
 
-	
+
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
@@ -226,6 +224,7 @@ public class LoginActivity extends FragmentActivity {
 				prefsEditor.putString(Config.SESSION_ID,"TEMP");
 				prefsEditor.putInt(Config.USER_ID, 1);
 				prefsEditor.putString(Config.USERNAME,mEmail);
+				prefsEditor.putBoolean(Config.LOGGED_IN_FB,false);
 
 				prefsEditor.commit();
 				startMain();
@@ -241,7 +240,7 @@ public class LoginActivity extends FragmentActivity {
 			mAuthTask = null;
 			showProgress(false);
 		}
-		
-		
+
+
 	}
 }

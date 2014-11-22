@@ -1,8 +1,8 @@
 package com.example.csen704;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 public class AnnouncementsFragment extends Fragment {
 
 	View rootView;
-	
+
 	public AnnouncementsFragment() {
-	
+
 	}
 
 	@Override
@@ -23,13 +23,13 @@ public class AnnouncementsFragment extends Fragment {
 		renderAnnouncements();
 		return rootView;
 	}
-	
+
 	public void renderAnnouncements() {
-		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 		for (int i = 0; i < 10; i++) {
 			transaction.add(R.id.announcements_container, new AnnouncementFragment());
 		}
 		transaction.commit();
 	}
-	
+
 }

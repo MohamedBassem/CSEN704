@@ -1,12 +1,12 @@
 package com.example.csen704;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 
 		if (savedInstanceState == null) {
 
-			getFragmentManager().beginTransaction().add(R.id.container, new AnnouncementsFragment()).commit();
+			getSupportFragmentManager().beginTransaction().add(R.id.container, new MainFragment()).commit();
 
 		}
 	}

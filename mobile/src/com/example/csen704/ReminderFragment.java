@@ -1,8 +1,7 @@
 package com.example.csen704;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.widget.TextView;
 public class ReminderFragment extends Fragment{
 
 	View rootView;
-	
+
 	public ReminderFragment() {
-	
+
 	}
 
 	@Override
@@ -25,7 +24,7 @@ public class ReminderFragment extends Fragment{
 		return rootView;
 	}
 
-	
+
 	public void setBackgroundColor() {
 		int backgroundColor = 0;
 		int color = getArguments().getInt("color");
@@ -40,7 +39,7 @@ public class ReminderFragment extends Fragment{
 		rootView.setBackgroundColor(getResources().getColor(backgroundColor));
 		((TextView) rootView.findViewById(R.id.reminder_text)).setText(getArguments().getString("text"));
 	}
-	
+
 	public static ReminderFragment createInstance(int color, String text) {
 		ReminderFragment fragment = new ReminderFragment();
 		Bundle bundle = new Bundle();
@@ -49,6 +48,6 @@ public class ReminderFragment extends Fragment{
 		fragment.setArguments(bundle);
 		return fragment;
 	}
-	
-	
+
+
 }

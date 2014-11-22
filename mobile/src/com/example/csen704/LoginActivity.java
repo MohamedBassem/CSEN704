@@ -43,6 +43,10 @@ public class LoginActivity extends FragmentActivity {
 
 		setContentView(R.layout.activity_login);
 
+		if(getSharedPreferences(Config.SETTING, 0).getAll().containsKey(Config.SESSION_ID) ){
+			startMain();
+		}
+
 		if (savedInstanceState == null) {
 	        // Add the fragment on initial activity setup
 	        facebookFragment = new FacebookFragment();
@@ -50,16 +54,7 @@ public class LoginActivity extends FragmentActivity {
 	        .beginTransaction()
 	        .add(R.id.facebook_login_button, facebookFragment)
 	        .commit();
-	    } else {
-	        // Or set the fragment from restored state info
-	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
-	        .findFragmentById(android.R.id.content);
 	    }
-
-
-		if(getSharedPreferences(Config.SETTING, 0).getAll().size() > 0){
-			startMain();
-		}
 
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);

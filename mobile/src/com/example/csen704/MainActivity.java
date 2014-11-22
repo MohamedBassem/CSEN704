@@ -1,5 +1,7 @@
 package com.example.csen704;
 
+import java.util.Map.Entry;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.ListView;
 
 import com.example.csen704.tools.CourseWrapper;
 import com.example.csen704.tools.SidebarListAdapter;
+import com.facebook.Session;
 
 public class MainActivity extends FragmentActivity {
 
@@ -73,10 +76,14 @@ public class MainActivity extends FragmentActivity {
 			SharedPreferences sessionIDPrefs = getSharedPreferences(
 					Config.SETTING, 0);
 			SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
-			prefsEditor.remove(Config.SESSION_ID);
-			prefsEditor.remove(Config.USER_ID);
-			prefsEditor.remove(Config.USERNAME);
+			for( Entry<String, ?> z : getSharedPreferences(Config.SETTING, 0).getAll().entrySet() ){
+				prefsEditor.remove(z.getKey());
+			}
 			prefsEditor.commit();
+			if (Session.getActiveSession() != null) {
+			    Session.getActiveSession().closeAndClearTokenInformation();
+			}
+			Session.setActiveSession(null);
 			startActivity(new Intent(this, LoginActivity.class));
 			finish();
 		}

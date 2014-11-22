@@ -1,7 +1,5 @@
 package com.example.csen704;
 
-import com.facebook.android.Facebook;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;

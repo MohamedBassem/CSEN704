@@ -52,12 +52,15 @@ class CourseFragmentPagerAdapter extends FragmentStatePagerAdapter {
     	bundle.putInt("courseId", couseId);
     	switch(i){
     	case 0:
-    		f = new AnnouncementsFragment();
+    		f = new CourseInfoFragment();
     		break;
     	case 1:
-    		f = new QuestionStreamFragment();
+    		f = new AnnouncementsFragment();
     		break;
     	case 2:
+    		f = new QuestionStreamFragment();
+    		break;
+    	case 3:
     		f = new RemindersFragment();
     		break;
     	}
@@ -67,17 +70,19 @@ class CourseFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
     	switch(position){
     	case 0:
-    		return "Annoucements";
+    		return "Course Info";
     	case 1:
-    		return "Questions";
+    		return "Annoucements";
     	case 2:
+    		return "Questions";
+    	case 3:
     		return "Reminders";
     	}
     	return "";

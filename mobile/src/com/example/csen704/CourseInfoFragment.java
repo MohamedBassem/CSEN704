@@ -5,10 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.TextView;
 
-public class CourseInfo extends Fragment {
+public class CourseInfoFragment extends Fragment {
 	TextView courseName;
 	TextView courseCode;
 	TextView courseDescription;
@@ -21,11 +20,11 @@ public class CourseInfo extends Fragment {
 		courseName = (TextView) rootView.findViewById(R.id.course_name);
 		courseCode = (TextView) rootView.findViewById(R.id.course_code);
 		courseDescription = (TextView) rootView.findViewById(R.id.course_description);
-		
+
 		inhabitateViews();
 		return rootView;
 	}
-	
+
 	public void inhabitateViews() {
 		String name = "Advanced Computer Lab";
 		String code = "CSEN 704";

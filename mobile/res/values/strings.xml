@@ -5,6 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_id">1517195581889242</string>
+
+    <!-- Profile Fragment -->
     <string name="courses_list_header">Subscribed Courses:- </string>
     <string name="share">Share to Facebook</string>
     <string name="turn_notifications">Turn Notification On/Off</string>
@@ -18,5 +20,15 @@
     <string name="megaphone_desc">Announcement</string>
     <string name="action_logout">Logout</string>
     <string name="title_activity_settings">Settings</string>
+
+    <!-- Create x -->
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+
+    <!-- Course -->
+    <string name="course_name">Course Name</string>
+    <string name="course_code">Course Code</string>
+    <string name="course_description">Course Description</string>
+    <string name="title_activity_create_course">CreateCourseActivity</string>
 
 </resources>

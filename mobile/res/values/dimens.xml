@@ -20,4 +20,7 @@
     <dimen name="normal">12sp</dimen>
     <dimen name="text_small">8sp</dimen>
     
+    <!-- Buttons -->
+    <dimen name="buttonHeight">45dp</dimen>
+    
 </resources>

@@ -2,6 +2,7 @@ package com.example.csen704;
 
 import java.util.Arrays;
 
+import android.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;

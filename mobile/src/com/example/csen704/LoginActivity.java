@@ -42,21 +42,23 @@ public class LoginActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
+		setContentView(R.layout.activity_login);
+
 		if (savedInstanceState == null) {
 	        // Add the fragment on initial activity setup
 	        facebookFragment = new FacebookFragment();
 	        getSupportFragmentManager()
 	        .beginTransaction()
-	        .add(android.R.id.content, facebookFragment)
+	        .add(R.id.facebook_login_button, facebookFragment)
 	        .commit();
 	    } else {
 	        // Or set the fragment from restored state info
 	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
 	        .findFragmentById(android.R.id.content);
 	    }
-		
-		setContentView(R.layout.activity_login);
+
+
 		if(getSharedPreferences(Config.SETTING, 0).getAll().size() > 0){
 			startMain();
 		}

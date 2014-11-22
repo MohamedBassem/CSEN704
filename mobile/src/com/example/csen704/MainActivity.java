@@ -20,6 +20,9 @@ import com.facebook.Session;
 
 public class MainActivity extends FragmentActivity {
 
+	private final int HOME_ID = -1;
+	private final int CREATE_COURSE_ID = -2;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class MainActivity extends FragmentActivity {
 
 	public void getCourses(){
 		CourseWrapper[] courses = new CourseWrapper[6];
-		courses[0] = new CourseWrapper("Home", -1);
+		courses[0] = new CourseWrapper("Home", HOME_ID);
 		for(int i=0;i<5;i++){
 			courses[i+1] = new CourseWrapper("Course " + i, i);
 		}
@@ -48,10 +51,12 @@ public class MainActivity extends FragmentActivity {
 	          int position, long id) {
 	    	  Bundle bundle = new Bundle();
 	    	  CourseWrapper course = (CourseWrapper) parent.getItemAtPosition(position);
-	    	  if(course.id != -1){
+	    	  if(course.id != HOME_ID){
 		    	  bundle.putInt("courseId", course.id );
 		    	  switchFragment(CourseFragment.class, bundle);
-	    	  }else{
+	    	  }else if(course.id != CREATE_COURSE_ID){
+		    	  switchFragment(CourseFragment.class, bundle);
+	    	  } else{
 	    		  switchFragment(MainFragment.class, bundle);
 	    	  }
 	    	  DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -71,7 +76,7 @@ public class MainActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			startActivity(new Intent(this, SettingsActivity.class));
 		}else if(id == R.id.action_logout){
 			SharedPreferences sessionIDPrefs = getSharedPreferences(
 					Config.SETTING, 0);

@@ -7,16 +7,16 @@
     <string name="app_id">1517195581889242</string>
     <string name="courses_list_header">Subscribed Courses:- </string>
     <string name="share">Share to Facebook</string>
-
+    <string name="turn_notifications">Turn Notification On/Off</string>
+    
     <!-- Login Fragment -->
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_login">Login</string>
     <string name="title_activity_facebook">FacebookActivity</string>
-    <string name="title_activity_question">QuestionActivity</string> 
+    <string name="title_activity_question">QuestionActivity</string>
     <string name="megaphone_desc">Announcement</string>
-    
     <string name="action_logout">Logout</string>
+    <string name="title_activity_settings">Settings</string>
 
 </resources>
-

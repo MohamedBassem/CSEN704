@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 public class QuestionStreamFragment extends Fragment{
 
 	View rootView;
+	int courseId;
 
 	public QuestionStreamFragment() {
 
@@ -20,7 +21,7 @@ public class QuestionStreamFragment extends Fragment{
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_question_stream, container,
 				false);
-
+//		courseId = getArguments().getInt("courseId", -1);
 		loadStream();
 
 		return rootView;

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 public class RemindersFragment extends Fragment{
 
 	View rootView;
+	int courseId;
 
 	String texts[] = {"Android milesstone two with social login", "Arduino milestone1, geting all the sensors up and running without connecting all of them together w ay kalam f ay betengan"};
 
@@ -22,7 +23,7 @@ public class RemindersFragment extends Fragment{
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_reminders, container,
 				false);
-
+//		courseId = getArguments().getInt("courseId", -1);
 		renderReminders();
 		return rootView;
 	}

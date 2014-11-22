@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 public class AnnouncementsFragment extends Fragment {
 
 	View rootView;
+	int courseId;
 
 	public AnnouncementsFragment() {
 
@@ -20,6 +21,7 @@ public class AnnouncementsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_announcements, container,
 				false);
+//		courseId = getArguments().getInt("courseId", -1);
 		renderAnnouncements();
 		return rootView;
 	}

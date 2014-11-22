@@ -54,6 +54,10 @@ public class LoginActivity extends FragmentActivity {
 	        .beginTransaction()
 	        .add(R.id.facebook_login_button, facebookFragment)
 	        .commit();
+	    }else {
+	        // Or set the fragment from restored state info
+	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
+	        .findFragmentById(android.R.id.content);
 	    }
 
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -220,6 +224,7 @@ public class LoginActivity extends FragmentActivity {
 				prefsEditor.putString(Config.SESSION_ID,"TEMP");
 				prefsEditor.putInt(Config.USER_ID, 1);
 				prefsEditor.putString(Config.USERNAME,mEmail);
+				prefsEditor.putBoolean(Config.LOGGED_IN_FB,false);
 
 				prefsEditor.commit();
 				startMain();

@@ -33,7 +33,7 @@ public class FacebookFragment extends Fragment {
 		authButton.setFragment(this);
 		authButton.setReadPermissions(Arrays.asList("user_likes", "user_status", "user_friends", "user_birthday"));
 
-		return null;
+		return view;
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class FacebookFragment extends Fragment {
 						@Override
 						public void onUserInfoFetched(GraphUser user) {
 							if (user != null) {
-								username = user.getUsername();
+								username = user.getName();
 							}
 							else
 								username = "";
@@ -103,6 +103,7 @@ public class FacebookFragment extends Fragment {
 			prefsEditor.putString(Config.SESSION_ID,"7amada");
 			prefsEditor.putInt(Config.USER_ID, 1);
 			prefsEditor.putString(Config.USERNAME,username);
+			prefsEditor.putBoolean(Config.LOGGED_IN_FB,true);
 			prefsEditor.commit();
 
 			startActivity(intent);

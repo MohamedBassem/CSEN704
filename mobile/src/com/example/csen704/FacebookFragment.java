@@ -14,8 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.LoginButton;
-import com.facebook.model.GraphUser;
-import com.facebook.widget.LoginButton.UserInfoChangedCallback;
+
 
 public class FacebookFragment extends Fragment {
 
@@ -82,18 +81,6 @@ public class FacebookFragment extends Fragment {
 		if (state.isOpened()) {
 			
 			Intent intent = new Intent(getActivity(), MainActivity.class);
-			authButton
-					.setUserInfoChangedCallback(new UserInfoChangedCallback() {
-						@Override
-						public void onUserInfoFetched(GraphUser user) {
-							if (user != null) {
-								name = user.getName();
-							}
-							else 
-								name = "";
-						}
-					});
-			intent.putExtra("name", name);
 			startActivity(intent);
 			getActivity().finish();
 		} else if (state.isClosed()) {

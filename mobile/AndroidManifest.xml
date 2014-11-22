@@ -50,6 +50,14 @@
             android:name="com.example.csen704.CreateCourseActivity"
             android:label="@string/title_activity_create_course" >
         </activity>
+        <activity
+            android:name="com.example.csen704.CreateAnswerActivity"
+            android:label="@string/title_activity_create_answer" >
+        </activity>
+        <activity
+            android:name="com.example.csen704.CreateQuestionActivity"
+            android:label="@string/title_activity_create_question" >
+        </activity>
     </application>
 
 </manifest>

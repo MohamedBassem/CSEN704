@@ -1,5 +1,7 @@
 package com.example.csen704;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -67,6 +69,16 @@ public class MainActivity extends FragmentActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
+		}else if(id == R.id.action_logout){
+			SharedPreferences sessionIDPrefs = getSharedPreferences(
+					Config.SETTING, 0);
+			SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
+			prefsEditor.remove(Config.SESSION_ID);
+			prefsEditor.remove(Config.USER_ID);
+			prefsEditor.remove(Config.USERNAME);
+			prefsEditor.commit();
+			startActivity(new Intent(this, LoginActivity.class));
+			finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}

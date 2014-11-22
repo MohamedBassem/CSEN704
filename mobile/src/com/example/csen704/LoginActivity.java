@@ -91,12 +91,11 @@ public class LoginActivity extends FragmentActivity {
 					}
 				});
 	    }
-	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 
@@ -186,7 +185,7 @@ public class LoginActivity extends FragmentActivity {
 		finish();
 	}
 
-	
+
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
@@ -241,7 +240,7 @@ public class LoginActivity extends FragmentActivity {
 			mAuthTask = null;
 			showProgress(false);
 		}
-		
-		
+
+
 	}
 }

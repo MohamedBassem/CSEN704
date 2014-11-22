@@ -12,7 +12,7 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/cancelTangle"
+            android:id="@+id/cancelCourse"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0px"
             android:layout_height="@dimen/buttonHeight"
@@ -27,7 +27,7 @@
         <View style="@style/dividerVertical" />
 
         <Button
-            android:id="@+id/createTangle"
+            android:id="@+id/createCourse"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0px"
             android:layout_height="@dimen/buttonHeight"

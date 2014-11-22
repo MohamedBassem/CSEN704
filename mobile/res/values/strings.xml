@@ -16,7 +16,7 @@
     <string name="login_password">Password</string>
     <string name="login_login">Login</string>
     <string name="title_activity_facebook">FacebookActivity</string>
-    <string name="title_activity_question">QuestionActivity</string>
+    <string name="title_activity_question">View Question</string>
     <string name="megaphone_desc">Announcement</string>
     <string name="action_logout">Logout</string>
     <string name="title_activity_settings">Settings</string>
@@ -36,9 +36,7 @@
     <string name="question_hint">Ask a Question</string>
     
      <!-- Answer -->
-    <string name="course__name">Course Name</string>
-    <string name="course__code">Course Code</string>
-    <string name="course__description">Course Description</string>
-    <string name="title_activity_create_answer">Create Answer</string>
-
+    <string name="add_answer">Post</string>
+    <string name="answer_hint">Add an Answer</string>
+    
 </resources>

@@ -1,4 +1,4 @@
-package com.example.csen704;
+package com.example.csen704.fragment;
 
 import java.util.Arrays;
 
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.csen704.R;
+import com.example.csen704.activity.Config;
+import com.example.csen704.activity.MainActivity;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;

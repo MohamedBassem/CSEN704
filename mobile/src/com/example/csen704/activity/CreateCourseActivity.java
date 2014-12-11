@@ -1,13 +1,15 @@
-package com.example.csen704;
+package com.example.csen704.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CreateCourseActivity extends Activity {
+import com.example.csen704.R;
+import com.example.csen704.base.BaseActivity;
+
+public class CreateCourseActivity extends BaseActivity {
 
 	EditText courseNameEdit;
 	EditText courseCodeEdit;
@@ -34,8 +36,9 @@ public class CreateCourseActivity extends Activity {
 			}
 
 		});
-		findViewById(R.id.cancelCourse).setOnClickListener(new View.OnClickListener() {
 
+
+		findViewById(R.id.cancelCourse).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 					activity.finish();
@@ -43,12 +46,6 @@ public class CreateCourseActivity extends Activity {
 
 		});
 
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		return true;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.example.csen704;
+package com.example.csen704.fragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.csen704.R;
+import com.example.csen704.activity.Config;
 import com.facebook.FacebookRequestError;
 import com.facebook.HttpMethod;
 import com.facebook.Request;

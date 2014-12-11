@@ -1,24 +1,22 @@
-package com.example.csen704;
-
-import java.util.Map.Entry;
+package com.example.csen704.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.csen704.R;
+import com.example.csen704.base.BaseActivity;
+import com.example.csen704.fragment.CourseFragment;
+import com.example.csen704.fragment.MainFragment;
+import com.example.csen704.fragment.ProfileFragment;
 import com.example.csen704.tools.CourseWrapper;
 import com.example.csen704.tools.SidebarListAdapter;
-import com.facebook.Session;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
 
 	private final int HOME_ID = -1;
 	private final int CREATE_COURSE_ID = -2;
@@ -69,35 +67,6 @@ public class MainActivity extends FragmentActivity {
 	      }
 
 	    });
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			startActivity(new Intent(this, SettingsActivity.class));
-		}else if(id == R.id.action_logout){
-			SharedPreferences sessionIDPrefs = getSharedPreferences(
-					Config.SETTING, 0);
-			SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
-			for( Entry<String, ?> z : getSharedPreferences(Config.SETTING, 0).getAll().entrySet() ){
-				prefsEditor.remove(z.getKey());
-			}
-			prefsEditor.commit();
-			if (Session.getActiveSession() != null) {
-			    Session.getActiveSession().closeAndClearTokenInformation();
-			}
-			Session.setActiveSession(null);
-			startActivity(new Intent(this, LoginActivity.class));
-			finish();
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	public <T> void switchFragment(Class<T> fragment, Bundle bundle){

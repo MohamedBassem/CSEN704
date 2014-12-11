@@ -1,4 +1,4 @@
-package com.example.csen704;
+package com.example.csen704.activity;
 
 public class Config {
 

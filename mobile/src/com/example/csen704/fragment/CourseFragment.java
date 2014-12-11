@@ -1,4 +1,6 @@
-package com.example.csen704;
+package com.example.csen704.fragment;
+
+import com.example.csen704.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,14 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainFragment extends Fragment {
+public class CourseFragment extends Fragment {
 
 	View rootView;
-	MainFragmentPagerAdapter adapter;
+	CourseFragmentPagerAdapter adapter;
 	ViewPager pager;
 
+	int courseId;
 
-	public MainFragment() {
+
+	public CourseFragment() {
 	}
 
 	@Override
@@ -24,50 +28,63 @@ public class MainFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_main, container,
 				false);
-		adapter = new MainFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+		adapter = new CourseFragmentPagerAdapter(getActivity().getSupportFragmentManager(), courseId);
 		pager = (ViewPager) rootView.findViewById(R.id.pager);
 		pager.setAdapter(adapter);
+
+		courseId = getArguments().getInt("courseId");
 
 		return rootView;
 	}
 }
 
-class MainFragmentPagerAdapter extends FragmentStatePagerAdapter {
-    public MainFragmentPagerAdapter(FragmentManager fm) {
+class CourseFragmentPagerAdapter extends FragmentStatePagerAdapter {
+	int couseId;
+
+    public CourseFragmentPagerAdapter(FragmentManager fm, int courseId) {
         super(fm);
+        this.couseId = courseId;
     }
 
     @Override
     public Fragment getItem(int i) {
 
     	Fragment f = null;
+    	Bundle bundle = new Bundle();
+    	bundle.putInt("courseId", couseId);
     	switch(i){
     	case 0:
-    		f = new AnnouncementsFragment();
+    		f = new CourseInfoFragment();
     		break;
     	case 1:
-    		f = new QuestionStreamFragment();
+    		f = new AnnouncementsFragment();
     		break;
     	case 2:
+    		f = new QuestionStreamFragment();
+    		break;
+    	case 3:
     		f = new RemindersFragment();
     		break;
     	}
+    	f.setArguments(bundle);
     	return f;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
     	switch(position){
     	case 0:
-    		return "Top Annoucements";
+    		return "Course Info";
     	case 1:
-    		return "Top Questions";
+    		return "Annoucements";
     	case 2:
+    		return "Questions";
+    	case 3:
     		return "Reminders";
     	}
     	return "";

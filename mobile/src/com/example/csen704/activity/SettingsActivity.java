@@ -1,4 +1,6 @@
-package com.example.csen704;
+package com.example.csen704.activity;
+
+import com.example.csen704.R;
 
 import android.app.Activity;
 import android.app.Fragment;

@@ -1,4 +1,7 @@
-package com.example.csen704;
+package com.example.csen704.fragment;
+
+import com.example.csen704.R;
+import com.example.csen704.activity.QuestionActivity;
 
 import android.content.Intent;
 import android.os.Bundle;

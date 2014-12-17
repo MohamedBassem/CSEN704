@@ -1,4 +1,4 @@
-class CoursesController < ActionController::Base
+class Api::CoursesController < Api::ApplicationController
 
   def subscribe
   end

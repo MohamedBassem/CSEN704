@@ -1,4 +1,4 @@
-class MaterialsController < ActionController::Base
+class Api::MaterialsController < Api::ApplicationController
 
   def index
   end

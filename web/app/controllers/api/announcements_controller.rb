@@ -1,4 +1,4 @@
-class AnnouncementsController < ActionController::Base
+class Api::AnnouncementsController < Api::ApplicationController
 
   def rating
   end

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
+
+    resources :sessions, only: ["create", "destroy"]
+
+
     resources :courses, only: ["create", "show", "index"] do
       member do
         post 'subscribe'

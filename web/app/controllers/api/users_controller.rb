@@ -7,6 +7,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def courses
+    @courses = current_user.subscribing_courses.all
   end
 
 end

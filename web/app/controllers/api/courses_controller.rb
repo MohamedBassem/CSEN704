@@ -1,6 +1,7 @@
 class Api::CoursesController < Api::ApplicationController
 
   def subscribe
+    
   end
 
   def unsubscribe
@@ -10,12 +11,15 @@ class Api::CoursesController < Api::ApplicationController
   end
 
   def index
+    current_user.subscribing_courses.all
   end
 
   def create
+    @course = current_user.create_course(name: params[:name], course_code: params[:course_code], description: params[:description])
   end
 
   def show
+    current_user.subscribing_courses.find(params[:id])
   end
 
 end

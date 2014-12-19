@@ -26,28 +26,37 @@ public class AnnouncementsFragment extends Fragment {
 		rootView = inflater.inflate(R.layout.fragment_announcements, container,
 				false);
 		Bundle bundle = getArguments();
-		if(bundle != null){
-			courseId = bundle.getInt("courseId", -1) ;
-		}else{
+		if (bundle != null) {
+			courseId = bundle.getInt("courseId", -1);
+		} else {
 			courseId = -1;
 		}
-		rootView.findViewById(R.id.create_announcment_button).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent(getActivity().getBaseContext(), CreateAnnouncementActivity.class);
-				intent.putExtra("courseId", courseId);
-				startActivity(intent);
-			}
-		});
+		if (courseId != -1) {
+			rootView.findViewById(R.id.create_announcment_button)
+					.setVisibility(View.VISIBLE);
+			rootView.findViewById(R.id.create_announcment_button)
+					.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View arg0) {
+							Intent intent = new Intent(getActivity()
+									.getBaseContext(),
+									CreateAnnouncementActivity.class);
+							intent.putExtra("courseId", courseId);
+							startActivity(intent);
+						}
+					});
+		}
 		renderAnnouncements();
 		return rootView;
 	}
 
 	public void renderAnnouncements() {
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		FragmentTransaction transaction = getActivity()
+				.getSupportFragmentManager().beginTransaction();
 		for (int i = 0; i < 10; i++) {
-			transaction.add(R.id.announcements_container, new AnnouncementFragment());
+			transaction.add(R.id.announcements_container,
+					new AnnouncementFragment());
 		}
 		transaction.commit();
 	}

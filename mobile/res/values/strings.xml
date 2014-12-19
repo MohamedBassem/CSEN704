@@ -57,5 +57,6 @@
     <string name="answer_hint">Add an Answer</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
+    <string name="title_activity_create_reminder">CreateReminderActivity</string>
 
 </resources>

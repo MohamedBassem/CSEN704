@@ -59,7 +59,7 @@
             android:label="@string/title_activity_create_course" >
         </activity>
         <activity
-            android:name="com.example.csen704.activity.RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register"
             android:parentActivityName=".activity.LoginActivity" >
             <meta-data
@@ -67,8 +67,12 @@
                 android:value="com.example.csen704.activity.LoginActivity" />
         </activity>
         <activity
-            android:name="com.example.csen704.activity.CreateAnnouncementActivity"
+            android:name=".activity.CreateAnnouncementActivity"
             android:label="@string/title_activity_create_announcement" >
+        </activity>
+        <activity
+            android:name=".CreateReminderActivity"
+            android:label="@string/title_activity_create_reminder" >
         </activity>
     </application>
 

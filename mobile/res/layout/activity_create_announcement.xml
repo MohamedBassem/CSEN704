@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/buttons_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cancelAnnouncement"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0px"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:onClick="cancelRedirect"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="20sp" />
+
+        <View style="@style/dividerVertical" />
+
+        <Button
+            android:id="@+id/createAnnouncement"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0px"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:onClick="create"
+            android:text="@string/create"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <View
+        style="@style/Divider"
+        android:layout_below="@+id/buttons_layout" />
+
+    <Spinner
+        android:id="@+id/announcement_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/buttons_layout"/>
+	
+    <EditText 
+        android:id="@+id/announcement_deadline_edit"
+        android:hint="@string/deadline"
+        android:layout_below="@id/announcement_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone"/>
+    
+    <EditText 
+        android:id="@+id/announcement_body_edit"
+        android:layout_below="@id/announcement_deadline_edit"
+        android:layout_height="wrap_content"
+        android:hint="@string/announcement_body"
+        android:layout_width="fill_parent"
+        android:inputType="textMultiLine"/>
+</RelativeLayout>

@@ -10,6 +10,7 @@ class Api::AnnouncementsController < Api::ApplicationController
   end
 
   def index
+    @announcements = Course.find(params[:course_id]).announcements.all
   end
 
   def create

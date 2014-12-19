@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class RemindersFragment extends Fragment{
+public class RemindersFragment extends Fragment {
 
 	View rootView;
 	int courseId;

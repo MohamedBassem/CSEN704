@@ -12,12 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.csen704.R;
 import com.example.csen704.base.BaseActivity;
+import com.example.csen704.base.BasePrivateActivity;
 import com.example.csen704.fragment.CourseFragment;
 import com.example.csen704.fragment.MainFragment;
 import com.example.csen704.fragment.ProfileFragment;
@@ -27,7 +29,7 @@ import com.example.csen704.tools.SidebarListAdapter;
 import com.example.csen704.util.ApiRouter;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BasePrivateActivity {
 
 	private final int HOME_ID = -1;
 	private final int CREATE_COURSE_ID = -2;
@@ -74,6 +76,7 @@ public class MainActivity extends BaseActivity {
 			          int position, long id) {
 			    	  Bundle bundle = new Bundle();
 			    	  CourseWrapper course = (CourseWrapper) parent.getItemAtPosition(position);
+			    	  Log.v("COURSE_ID", "" + course.id);
 			    	  if(course.id == HOME_ID){
 			    		  switchFragment(MainFragment.class, bundle);
 			    	  }else if(course.id == CREATE_COURSE_ID){

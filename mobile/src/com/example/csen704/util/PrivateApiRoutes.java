@@ -2,6 +2,7 @@ package com.example.csen704.util;
 
 import java.util.List;
 
+import com.example.csen704.model.Announcement;
 import com.example.csen704.model.Course;
 
 import retrofit.Callback;
@@ -16,8 +17,14 @@ public interface PrivateApiRoutes {
 
 	@POST("/courses")
 	@FormUrlEncoded
-	void create_course(@Field("name") String name, @Field("course_code") String courseCode, Callback<Object> callback);
+	void createCourse(@Field("name") String name, @Field("course_code") String courseCode, @Field("description") String description, Callback<Object> callback);
 	
 	@GET("/users/{user_id}/courses")
-	void getCourses(@Path("user_id") long user_id, Callback<List<Course>> callback);
+	void getCourses(@Path("user_id") long userId, Callback<List<Course>> callback);
+	
+	@GET("/courses/{course_id}")
+	void getCourseInfo(@Path("course_id") long courseId, Callback<Course> callback);
+	
+	@GET("/courses/{course_id}/announcements")
+	void getCourseAnnouncements(@Path("course_id") long courseId, Callback<List<Announcement>> callback);
 }

@@ -11,7 +11,7 @@ class Api::CoursesController < Api::ApplicationController
   end
 
   def index
-    current_user.subscribing_courses.all
+  
   end
 
   def create
@@ -19,7 +19,7 @@ class Api::CoursesController < Api::ApplicationController
   end
 
   def show
-    current_user.subscribing_courses.find(params[:id])
+    @course = Course.find(params[:id])
   end
 
 end

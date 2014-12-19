@@ -36,8 +36,8 @@ public class CreateCourseActivity extends BasePrivateActivity {
 				if(courseNameEdit.getText().toString().equals(""))
 					Toast.makeText(activity, "Please enter a valid course name.", Toast.LENGTH_LONG).show();
 				else
-					ApiRouter.withToken(getCurrentUser().getToken()).create_course(courseNameEdit.getText().toString(),
-							courseCodeEdit.getText().toString(), new Callback<Object>() {
+					ApiRouter.withToken(getCurrentUser().getToken()).createCourse(courseNameEdit.getText().toString(),
+							courseCodeEdit.getText().toString(), courseDescriptionEdit.getText().toString(), new Callback<Object>() {
 						
 						@Override
 						public void success(Object obj, Response res) {

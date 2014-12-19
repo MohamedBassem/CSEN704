@@ -7,6 +7,7 @@ public class Course {
 	private String description;
 	private String courseCode;
 	private int ownerId;
+	
 	public long getId() {
 		return id;
 	}

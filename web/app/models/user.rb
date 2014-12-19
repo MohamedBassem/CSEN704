@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
 	default_scope {where verified: 1}
   has_many :owned_courses, :foreign_key => 'owner_id', :class_name => 'Course'
-  has_many :subscribing_courses, :foreign_key => 'course_id', :through => :course_subscription
+  has_many :course_subscriptions
+  has_many :courses, :through => :course_subscriptions
   has_many :course_invitations, class_name: "CourseInvitation"
   has_many :reminders
   has_many :materials
@@ -49,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def create_course(dict)
-    self.owned_courses.create(dict)
+    self.courses << self.owned_courses.create(dict)
   end
 
   def ask_to_follow(course)

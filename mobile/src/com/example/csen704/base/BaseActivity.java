@@ -99,7 +99,7 @@ public abstract class BaseActivity extends FragmentActivity {
 		return getCurrentUser() != null;
 	}
 
-	protected User getCurrentUser() {
+	public User getCurrentUser() {
 		if (currentUser == null) {
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 

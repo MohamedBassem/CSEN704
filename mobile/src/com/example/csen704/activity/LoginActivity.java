@@ -1,7 +1,6 @@
 package com.example.csen704.activity;
 
 import com.example.csen704.R;
-import com.example.csen704.RegisterActivity;
 import com.example.csen704.fragment.FacebookFragment;
 
 import android.animation.Animator;

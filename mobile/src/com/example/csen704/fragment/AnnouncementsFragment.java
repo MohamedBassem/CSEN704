@@ -11,7 +11,9 @@ import com.example.csen704.R;
 import com.example.csen704.base.BasePrivateActivity;
 import com.example.csen704.model.Announcement;
 import com.example.csen704.util.ApiRouter;
+import com.example.csen704.activity.CreateAnnouncementActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -30,12 +32,29 @@ public class AnnouncementsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_announcements, container,
 				false);
-
 		Bundle bundle = getArguments();
-		if(bundle != null){
-			courseId = bundle.getLong("courseId", -1) ;
-		}else{
+
+		if (bundle != null) {
+			courseId = bundle.getLong("courseId", -1);
+		} else {
+
 			courseId = -1;
+		}
+		if (courseId != -1) {
+			rootView.findViewById(R.id.create_announcment_button)
+					.setVisibility(View.VISIBLE);
+			rootView.findViewById(R.id.create_announcment_button)
+					.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View arg0) {
+							Intent intent = new Intent(getActivity()
+									.getBaseContext(),
+									CreateAnnouncementActivity.class);
+							intent.putExtra("courseId", courseId);
+							startActivity(intent);
+						}
+					});
 		}
 
 		announcements = new ArrayList<Announcement>();

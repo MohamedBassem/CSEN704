@@ -6,6 +6,7 @@ import retrofit.client.Response;
 
 import com.example.csen704.R;
 import com.example.csen704.base.BaseActivity;
+import com.example.csen704.RegisterActivity;
 import com.example.csen704.fragment.FacebookFragment;
 import com.example.csen704.model.User;
 import com.example.csen704.util.ApiRouter;
@@ -15,6 +16,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Region;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -45,6 +48,7 @@ public class LoginActivity extends BaseActivity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
+	private Button register;
 	FacebookFragment facebookFragment;
 
 
@@ -89,7 +93,16 @@ public class LoginActivity extends BaseActivity {
 						return false;
 					}
 				});
-
+		register = (Button) findViewById(R.id.register_button);
+		register.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
+				startActivity(intent);
+				
+			}
+		});
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);

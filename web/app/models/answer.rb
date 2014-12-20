@@ -13,4 +13,8 @@ class Answer < ActiveRecord::Base
     average = sum/ratings.size
   end
 
+  def username
+    user.name
+  end
+
 end

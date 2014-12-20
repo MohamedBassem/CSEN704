@@ -39,4 +39,14 @@ class Api::UsersController < Api::ApplicationController
     @users = current_user.users.all
   end
 
+  def notification_flag
+    if params[:flag].nil?
+      @notification_flag = current_user.notification_enabled
+    else
+      current_user.notification_enabled = params[:flag] == "true"
+      current_user.save!
+      render text: ""
+    end
+  end
+
 end

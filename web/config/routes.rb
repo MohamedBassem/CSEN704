@@ -38,6 +38,8 @@ Rails.application.routes.draw do
         get 'questions'
         get 'followings'
         post 'follow'
+        post 'notification_flag'
+        get 'notification_flag'
       end
     end
   end

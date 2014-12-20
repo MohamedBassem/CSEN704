@@ -1,8 +1,8 @@
 package com.example.csen704.activity;
 
-import com.example.csen704.R;
-
-import android.app.Activity;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
-public class SettingsActivity extends Activity {
+import com.example.csen704.R;
+import com.example.csen704.base.BaseActivity;
+import com.example.csen704.model.Settings;
+import com.example.csen704.util.ApiRouter;
 
+public class SettingsActivity extends BaseActivity {
+
+	CheckBox checkbox;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +57,23 @@ public class SettingsActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		CheckBox checkbox;
+
 		public PlaceholderFragment() {
+		}
+
+		private void load() {
+			String token = ((BaseActivity) getActivity()).getCurrentUser().getToken();
+			ApiRouter.withToken(token).getNotificationFlag(((BaseActivity) getActivity()).getCurrentUser().getId(), new Callback<Settings>() {
+				@Override
+				public void failure(RetrofitError error) {
+				}
+
+				@Override
+				public void success(Settings settings, Response arg1) {
+					checkbox.setChecked(settings.getNotificationEnabled() == 1);
+				}
+			});
 		}
 
 		@Override
@@ -56,6 +81,26 @@ public class SettingsActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_settings,
 					container, false);
+			checkbox = (CheckBox) rootView.findViewById(R.id.notification_enabled);
+			checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					String token = ((BaseActivity) getActivity()).getCurrentUser().getToken();
+					ApiRouter.withToken(token).setNotificationFlag(((BaseActivity) getActivity()).getCurrentUser().getId(), isChecked, new Callback<Response>() {
+						@Override
+						public void failure(RetrofitError error) {
+						}
+
+						@Override
+						public void success(Response arg0, Response arg1) {
+							Toast.makeText(getActivity().getApplicationContext(), "Settings updated!", Toast.LENGTH_SHORT).show();
+						}
+					});
+				}
+			});
+
+			load();
 			return rootView;
 		}
 	}

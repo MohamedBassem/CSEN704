@@ -2,11 +2,6 @@ package com.example.csen704.util;
 
 import java.util.List;
 
-import com.example.csen704.model.Announcement;
-import com.example.csen704.model.Answer;
-import com.example.csen704.model.Course;
-import com.example.csen704.model.Question;
-import com.example.csen704.model.User;
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Field;
@@ -19,6 +14,8 @@ import com.example.csen704.model.Announcement;
 import com.example.csen704.model.Answer;
 import com.example.csen704.model.Course;
 import com.example.csen704.model.Question;
+import com.example.csen704.model.Settings;
+import com.example.csen704.model.User;
 
 public interface PrivateApiRoutes {
 
@@ -67,13 +64,13 @@ public interface PrivateApiRoutes {
 	@GET("/courses/{course_id}/questions/{question_id}/answers")
 	void getAnswers(@Path("course_id") long courseId, @Path("question_id") long questionId, Callback<List<Answer>> callback);
 
-	
+
 	@GET("/users/{user_id}/followings")
 	void getFollowers(@Path("user_id") long userId, Callback<List<User>> callback);
-	
+
 	@GET("/users")
 	void getUsers(Callback<List<User>> callback);
-	
+
 	@POST("/users/{user_id}/follow")
 	@FormUrlEncoded
 	void follow(@Path("user_id") long userId, @Field("following_id") long followingId, Callback<Response> callback);
@@ -81,5 +78,12 @@ public interface PrivateApiRoutes {
 	@POST("/courses/{course_id}/questions/{question_id}/rating")
 	@FormUrlEncoded
 	void rateQuestion(@Path("course_id") long courseId, @Path("question_id") long questionId, @Field("rating") long rating, Callback<Response> callback);
+
+	@POST("/users/{user_id}/notification_flag")
+	@FormUrlEncoded
+	void setNotificationFlag(@Path("user_id") long userId, @Field("flag") boolean flag, Callback<Response> callback);
+
+	@GET("/users/{user_id}/notification_flag")
+	void getNotificationFlag(@Path("user_id") long userId, Callback<Settings> callback);
 
 }

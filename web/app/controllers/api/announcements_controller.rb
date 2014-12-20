@@ -14,6 +14,7 @@ class Api::AnnouncementsController < Api::ApplicationController
   end
 
   def create
+    @announcement = Course.find(params[:course_id]).announcements.create(announcement_type: "general", body: params[:announcement_body], creator_id: current_user.id)
   end
 
   def show

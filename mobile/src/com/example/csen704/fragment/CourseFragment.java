@@ -58,28 +58,8 @@ class CourseFragmentPagerAdapter extends FragmentStatePagerAdapter {
         super(activity.getSupportFragmentManager());
         this.courseId = courseId;
         this.activity = activity;
-        loadCourseData();
+   
         
-    }
-
-    public void loadCourseData() {
-    	course = new Course();
-    	Log.v("COURSE", "" + courseId);
-    	String token = activity.getCurrentUser().getToken();
-    	ApiRouter.withToken(token).getCourseInfo(courseId, new Callback<Course>() {
-			
-			@Override
-			public void success(Course cors, Response res) {
-	
-			
-			}
-			
-			@Override
-			public void failure(RetrofitError error) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
     }
     
     @Override

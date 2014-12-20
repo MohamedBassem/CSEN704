@@ -1,2 +1,2 @@
-object @course
+object @course => nil
 attribute :name, :course_code, :description

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class MainFragment extends Fragment {
 
 
 	public MainFragment() {
+	
 	}
 
 	@Override
@@ -26,6 +28,7 @@ public class MainFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_main, container,
 				false);
+		
 		adapter = new MainFragmentPagerAdapter(getActivity().getSupportFragmentManager());
 		pager = (ViewPager) rootView.findViewById(R.id.pager);
 		pager.setAdapter(adapter);
@@ -41,7 +44,8 @@ class MainFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-
+    	Bundle bundle = new Bundle();
+    	bundle.putLong("courseId", -1);
     	Fragment f = null;
     	switch(i){
     	case 0:
@@ -54,6 +58,7 @@ class MainFragmentPagerAdapter extends FragmentStatePagerAdapter {
     		f = new RemindersFragment();
     		break;
     	}
+    	f.setArguments(bundle);
     	return f;
     }
 

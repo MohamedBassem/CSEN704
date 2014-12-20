@@ -30,4 +30,11 @@ public interface PrivateApiRoutes {
 
 	@GET("/courses/{course_id}/announcements")
 	void getCourseAnnouncements(@Path("course_id") long courseId, Callback<List<Announcement>> callback);
+	
+	@GET("/users/{user_id}/announcements")
+	void getUserAnnoucenemnts(@Path("user_id") long userId, Callback<List<Announcement>> callback);
+	
+	@POST("/courses/{course_id}/announcements")
+	@FormUrlEncoded
+	void createCourseAnnouncement(@Path("course_id") long courseId, @Field("announcement_body") String announcementBody, Callback<Announcement> callback);
 }

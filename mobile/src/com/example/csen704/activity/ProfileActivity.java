@@ -11,12 +11,15 @@ import com.example.csen704.R.id;
 import com.example.csen704.R.layout;
 import com.example.csen704.R.menu;
 import com.example.csen704.base.BaseActivity;
+import com.example.csen704.fragment.QuestionFragment;
 import com.example.csen704.model.Course;
+import com.example.csen704.model.Question;
 import com.example.csen704.model.User;
 import com.example.csen704.util.ApiRouter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +31,7 @@ public class ProfileActivity extends BaseActivity {
 	TextView name;
 	Button follow;
 	ArrayList<String> courses;
+	ArrayList<String> questions;
 	LinearLayout subscribedCourses;
 	public static User user;
 	
@@ -49,7 +53,34 @@ public class ProfileActivity extends BaseActivity {
 		name.setText(user.getName());
 		inhabitateCourses();
 	}
+	
+	private void inhabitateQuestions() {
+		
+		final BaseActivity self = this;
+		final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+		ApiRouter.withToken(user.getToken()).getTaggedQuestions(
+				user.getId(), new Callback<List<Question>>() {
+					@Override
+					public void failure(RetrofitError error) {
+						// TODO Auto-generated method stub
+
+					}
+					
+					@Override
+					public void success(List<Question> list,
+							retrofit.client.Response response) {
+						 if (list.size() != 0)
+						 findViewById(R.id.courses_list_header).setVisibility(
+						 View.VISIBLE);
+						
+						 for (Question question : list)
+								transaction.add(R.id.tagged_questions_container, new QuestionFragment(question));
+							transaction.commit();
+					}
+				});
+		
+	}
 	private void inhabitateCourses() {
 		courses = new ArrayList<String>();
 		final BaseActivity self = this;

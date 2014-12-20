@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 public class QuestionStreamFragment extends Fragment {
 
 	View rootView;
-	int courseId;
+	long courseId;
 
 	public QuestionStreamFragment() {
 
@@ -25,7 +25,7 @@ public class QuestionStreamFragment extends Fragment {
 				false);
 		Bundle bundle = getArguments();
 		if(bundle != null){
-			courseId = bundle.getInt("courseId", -1) ;
+			courseId = bundle.getLong("courseId", -1) ;
 		}else{
 			courseId = -1;
 		}

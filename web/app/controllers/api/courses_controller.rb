@@ -1,7 +1,7 @@
 class Api::CoursesController < Api::ApplicationController
 
   def subscribe
-    
+  
   end
 
   def unsubscribe

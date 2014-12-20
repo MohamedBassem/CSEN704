@@ -44,13 +44,13 @@
         style="@style/Divider"
         android:layout_below="@+id/buttons_layout" />
 
-    <Spinner
+    <!-- <Spinner
         android:id="@+id/announcement_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/buttons_layout"/>
-	
+        android:layout_below="@id/buttons_layout"/> -->
+	<!-- 
     <EditText 
         android:id="@+id/announcement_deadline_edit"
         android:hint="@string/deadline"
@@ -58,13 +58,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:visibility="gone"/>
+        android:visibility="gone"/> -->
     
     <EditText 
         android:id="@+id/announcement_body_edit"
-        android:layout_below="@id/announcement_deadline_edit"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:hint="@string/announcement_body"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/buttons_layout"
         android:layout_width="fill_parent"
         android:inputType="textMultiLine"/>
 </RelativeLayout>

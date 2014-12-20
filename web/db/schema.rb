@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 20141217212824) do
     t.date     "deadline"
   end
 
+  create_table "sessions", force: true do |t|
+    t.string   "session"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tags", force: true do |t|
     t.string "body", limit: 30
   end

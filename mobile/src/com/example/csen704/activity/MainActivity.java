@@ -58,6 +58,7 @@ public class MainActivity extends BasePrivateActivity {
 
 			@Override
 			public void success(List<Course> list, Response res) {
+			
 				CourseWrapper[] courses = new CourseWrapper[list.size() + 3];
 				courses[0] = new CourseWrapper(getSharedPreferences(Config.SETTING, 0).getString(Config.USERNAME, "UNKNOWN"), PROFILE_ID);
 				courses[1] = new CourseWrapper("Home", HOME_ID);
@@ -76,7 +77,6 @@ public class MainActivity extends BasePrivateActivity {
 			          int position, long id) {
 			    	  Bundle bundle = new Bundle();
 			    	  CourseWrapper course = (CourseWrapper) parent.getItemAtPosition(position);
-			    	  Log.v("COURSE_ID", "" + course.id);
 			    	  if(course.id == HOME_ID){
 			    		  switchFragment(MainFragment.class, bundle);
 			    	  }else if(course.id == CREATE_COURSE_ID){

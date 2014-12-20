@@ -14,8 +14,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@color/white"
-            android:drawableRight="@drawable/ic_action_new_white"
+            android:background="@color/post_background"
+            android:drawableRight="@drawable/ic_action_new_yellow"
             android:visibility="visible" />
 
         <LinearLayout

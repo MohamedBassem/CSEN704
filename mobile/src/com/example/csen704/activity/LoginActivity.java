@@ -6,7 +6,6 @@ import retrofit.client.Response;
 
 import com.example.csen704.R;
 import com.example.csen704.base.BaseActivity;
-import com.example.csen704.RegisterActivity;
 import com.example.csen704.fragment.FacebookFragment;
 import com.example.csen704.model.User;
 import com.example.csen704.util.ApiRouter;

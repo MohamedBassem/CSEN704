@@ -16,11 +16,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.example.csen704.activity.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.example.csen704.activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
             <intent-filter>
@@ -39,40 +39,48 @@
             android:value="@string/app_id" />
 
         <activity
-            android:name=".activity.FacebookActivity"
+            android:name="com.example.csen704.activity.FacebookActivity"
             android:label="@string/title_activity_facebook" >
         </activity>
         <activity
-            android:name=".activity.QuestionActivity"
+            android:name="com.example.csen704.activity.QuestionActivity"
             android:label="@string/title_activity_question" >
         </activity>
         <activity
-            android:name=".activity.SettingsActivity"
+            android:name="com.example.csen704.activity.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".activity.MainActivity" >
+            android:parentActivityName="com.example.csen704.activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.csen704.MainActivity" />
         </activity>
         <activity
-            android:name=".activity.CreateCourseActivity"
+            android:name="com.example.csen704.activity.CreateCourseActivity"
             android:label="@string/title_activity_create_course" >
         </activity>
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.example.csen704.activity.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".activity.LoginActivity" >
+            android:parentActivityName="com.example.csen704.activity.LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.csen704.activity.LoginActivity" />
         </activity>
         <activity
-            android:name=".activity.CreateAnnouncementActivity"
+            android:name="com.example.csen704.activity.CreateAnnouncementActivity"
             android:label="@string/title_activity_create_announcement" >
         </activity>
         <activity
-            android:name=".CreateReminderActivity"
+            android:name="com.example.csen704.CreateReminderActivity"
             android:label="@string/title_activity_create_reminder" >
+        </activity>
+        <activity
+            android:name="com.example.csen704.activity.BrowseCoursesActivity"
+            android:label="@string/title_activity_browse_courses"
+            android:parentActivityName="com.example.csen704.activity.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.csen704.activity.MainActivity" />
         </activity>
     </application>
 

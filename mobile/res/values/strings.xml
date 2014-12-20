@@ -58,5 +58,6 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
     <string name="title_activity_create_reminder">CreateReminderActivity</string>
+    <string name="title_activity_browse_courses">Browse Courses</string>
 
 </resources>

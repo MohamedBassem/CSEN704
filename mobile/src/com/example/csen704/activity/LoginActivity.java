@@ -3,23 +3,12 @@ package com.example.csen704.activity;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import com.example.csen704.R;
-import com.example.csen704.base.BaseActivity;
-import com.example.csen704.fragment.FacebookFragment;
-import com.example.csen704.model.User;
-import com.example.csen704.util.ApiRouter;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Region;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,6 +19,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.csen704.R;
+import com.example.csen704.RegisterActivity;
+import com.example.csen704.base.BaseActivity;
+import com.example.csen704.fragment.FacebookFragment;
+import com.example.csen704.model.User;
+import com.example.csen704.util.ApiRouter;
+
 public class LoginActivity extends BaseActivity {
 
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
@@ -38,7 +34,7 @@ public class LoginActivity extends BaseActivity {
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 
 	boolean taskFlag = false;
-	
+
 	private String mEmail;
 	private String mPassword;
 
@@ -57,21 +53,17 @@ public class LoginActivity extends BaseActivity {
 
 		setContentView(R.layout.activity_login);
 
-		if(getSharedPreferences(Config.SETTING, 0).getAll().containsKey(Config.SESSION_ID) ){
-			startMain();
-		}
-
 		if (savedInstanceState == null) {
 	        // Add the fragment on initial activity setup
-	        facebookFragment = new FacebookFragment();
-	        getSupportFragmentManager()
-	        .beginTransaction()
-	        .add(R.id.facebook_login_button, facebookFragment)
-	        .commit();
+//	        facebookFragment = new FacebookFragment();
+//	        getSupportFragmentManager()
+//	        .beginTransaction()
+//	        .add(R.id.facebook_login_button, facebookFragment)
+//	        .commit();
 	    }else {
 	        // Or set the fragment from restored state info
-	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
-	        .findFragmentById(android.R.id.content);
+//	        facebookFragment = (FacebookFragment) getSupportFragmentManager()
+//	        .findFragmentById(android.R.id.content);
 	    }
 
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -86,7 +78,7 @@ public class LoginActivity extends BaseActivity {
 							KeyEvent keyEvent) {
 						if (id == R.id.login || id == EditorInfo.IME_NULL) {
 							attemptLogin();
-							
+
 							return true;
 						}
 						return false;
@@ -94,12 +86,12 @@ public class LoginActivity extends BaseActivity {
 				});
 		register = (Button) findViewById(R.id.register_button);
 		register.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
 				startActivity(intent);
-				
+
 			}
 		});
 		mLoginFormView = findViewById(R.id.login_form);
@@ -110,7 +102,7 @@ public class LoginActivity extends BaseActivity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						
+
 						attemptLogin();
 					}
 				});
@@ -127,7 +119,7 @@ public class LoginActivity extends BaseActivity {
 		if (taskFlag) {
 			return;
 		}
-		
+
 		mEmailView.setError(null);
 		mPasswordView.setError(null);
 
@@ -207,11 +199,11 @@ public class LoginActivity extends BaseActivity {
 		startActivity(main);
 		finish();
 	}
-	
+
 	public void login(String email, String password) {
-	
+
 		ApiRouter.withoutToken().login(email, password, new Callback<User>() {
-			
+
 			@Override
 			public void failure(RetrofitError error) {
 				showProgress(false);
@@ -220,14 +212,14 @@ public class LoginActivity extends BaseActivity {
 				.setError(getString(R.string.error_incorrect_password));
 				mPasswordView.requestFocus();
 				taskFlag = false;
-				
+
 			}
 			@Override
 			public void success(User user, Response res) {
 				setCurrentUser(user);
 				startMain();
 				taskFlag = false;
-				
+
 			}
 		});
 	}

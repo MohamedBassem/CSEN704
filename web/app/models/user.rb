@@ -13,13 +13,14 @@ class User < ActiveRecord::Base
   has_many :sessions
   has_many :answers, dependent: :destroy
   has_many :ratings, dependent: :destroy
-
+  attr_accessor :password
 
   validates :name, :email, :presence => true
   validates :email, :uniqueness => true
   validates :email, :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
   before_create :generate_verification_code
+  before_create :encrypt_password
 
   def self.unverified
   	self.unscoped.where(verified: 0)

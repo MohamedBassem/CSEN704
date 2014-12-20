@@ -67,6 +67,11 @@
                 android:value="com.example.csen704.activity.LoginActivity" />
         </activity>
         <activity
+            android:name="com.example.csen704.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName="com.example.csen704.LoginActivity" >
+        </activity>
+        <activity
             android:name=".activity.CreateAnnouncementActivity"
             android:label="@string/title_activity_create_announcement" >
         </activity>

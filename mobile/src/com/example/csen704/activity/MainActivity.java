@@ -48,6 +48,8 @@ public class MainActivity extends BasePrivateActivity {
 
 	public void getCourses(){
 		final Activity self = this;
+		if (getCurrentUser() == null)
+			return;
 		ApiRouter.withToken(getCurrentUser().getToken()).getCourses(getCurrentUser().getId(), new Callback<List<Course>>() {
 
 			@Override

@@ -1,0 +1,13 @@
+class Api::UsersController < Api::ApplicationController
+
+  def index
+  end
+
+  def reminders
+  end
+
+  def courses
+    @courses = current_user.courses.all
+  end
+
+end

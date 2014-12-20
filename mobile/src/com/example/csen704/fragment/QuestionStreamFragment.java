@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class QuestionStreamFragment extends Fragment{
+public class QuestionStreamFragment extends Fragment {
 
 	View rootView;
 	int courseId;

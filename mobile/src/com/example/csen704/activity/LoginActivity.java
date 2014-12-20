@@ -1,7 +1,14 @@
 package com.example.csen704.activity;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 import com.example.csen704.R;
+import com.example.csen704.base.BaseActivity;
 import com.example.csen704.fragment.FacebookFragment;
+import com.example.csen704.model.User;
+import com.example.csen704.util.ApiRouter;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -22,15 +30,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LoginActivity extends FragmentActivity {
+public class LoginActivity extends BaseActivity {
 
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
 			"admin@csen704.com:admin" };
 
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 
-	private UserLoginTask mAuthTask = null;
-
+	boolean taskFlag = false;
+	
 	private String mEmail;
 	private String mPassword;
 
@@ -78,6 +86,7 @@ public class LoginActivity extends FragmentActivity {
 							KeyEvent keyEvent) {
 						if (id == R.id.login || id == EditorInfo.IME_NULL) {
 							attemptLogin();
+							
 							return true;
 						}
 						return false;
@@ -101,6 +110,7 @@ public class LoginActivity extends FragmentActivity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
+						
 						attemptLogin();
 					}
 				});
@@ -114,10 +124,10 @@ public class LoginActivity extends FragmentActivity {
 	}
 
 	public void attemptLogin() {
-		if (mAuthTask != null) {
+		if (taskFlag) {
 			return;
 		}
-
+		
 		mEmailView.setError(null);
 		mPasswordView.setError(null);
 
@@ -152,8 +162,7 @@ public class LoginActivity extends FragmentActivity {
 		} else {
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
+			login(mEmailView.getText().toString(), mPasswordView.getText().toString());
 		}
 	}
 
@@ -198,64 +207,28 @@ public class LoginActivity extends FragmentActivity {
 		startActivity(main);
 		finish();
 	}
-
-
-	/**
-	 * Represents an asynchronous login/registration task used to authenticate
-	 * the user.
-	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-		@Override
-		protected Boolean doInBackground(Void... params) {
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					//return pieces[1].equals(mPassword);
-					return true;
-				}
-			}
-
-			return true;
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			showProgress(false);
-
-			if (success) {
-
-				SharedPreferences sessionIDPrefs = getSharedPreferences(
-						Config.SETTING, 0);
-				SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
-				prefsEditor.putString(Config.SESSION_ID,"TEMP");
-				prefsEditor.putInt(Config.USER_ID, 1);
-				prefsEditor.putString(Config.USERNAME,mEmail);
-				prefsEditor.putBoolean(Config.LOGGED_IN_FB,false);
-
-				prefsEditor.commit();
-				startMain();
-			} else {
+	
+	public void login(String email, String password) {
+	
+		ApiRouter.withoutToken().login(email, password, new Callback<User>() {
+			
+			@Override
+			public void failure(RetrofitError error) {
+				showProgress(false);
+				Log.v("LOGIN_ERROR", error.getMessage());
 				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
+				.setError(getString(R.string.error_incorrect_password));
 				mPasswordView.requestFocus();
+				taskFlag = false;
+				
 			}
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			showProgress(false);
-		}
-
-
+			@Override
+			public void success(User user, Response res) {
+				setCurrentUser(user);
+				startMain();
+				taskFlag = false;
+				
+			}
+		});
 	}
 }

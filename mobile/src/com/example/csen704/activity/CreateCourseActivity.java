@@ -1,5 +1,8 @@
 package com.example.csen704.activity;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +11,11 @@ import android.widget.Toast;
 
 import com.example.csen704.R;
 import com.example.csen704.base.BaseActivity;
+import com.example.csen704.base.BasePrivateActivity;
+import com.example.csen704.util.ApiRouter;
+import com.example.csen704.util.PrivateApiInterceptor;
 
-public class CreateCourseActivity extends BaseActivity {
+public class CreateCourseActivity extends BasePrivateActivity {
 
 	EditText courseNameEdit;
 	EditText courseCodeEdit;
@@ -29,10 +35,21 @@ public class CreateCourseActivity extends BaseActivity {
 			public void onClick(View arg0) {
 				if(courseNameEdit.getText().toString().equals(""))
 					Toast.makeText(activity, "Please enter a valid course name.", Toast.LENGTH_LONG).show();
-				else if(courseCodeEdit.getText().toString().equals(""))
-					Toast.makeText(activity, "Please enter a valid course code.", Toast.LENGTH_LONG).show();
 				else
-					activity.finish();
+					ApiRouter.withToken(getCurrentUser().getToken()).createCourse(courseNameEdit.getText().toString(),
+							courseCodeEdit.getText().toString(), courseDescriptionEdit.getText().toString(), new Callback<Object>() {
+						
+						@Override
+						public void success(Object obj, Response res) {
+							activity.finish();
+							
+						}
+						
+						@Override
+						public void failure(RetrofitError error) {
+							Toast.makeText(activity, error.getMessage(), Toast.LENGTH_LONG).show();
+						}
+					});
 			}
 
 		});
@@ -41,11 +58,13 @@ public class CreateCourseActivity extends BaseActivity {
 		findViewById(R.id.cancelCourse).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-					activity.finish();
+			
+					activity.finish();	
 			}
 
 		});
 
 	}
+
 
 }

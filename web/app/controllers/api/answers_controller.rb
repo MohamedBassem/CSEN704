@@ -1,9 +1,6 @@
-class QuestionsController < ActionController::Base
+class Api::AnswersController < Api::ApplicationController
 
   def rating
-  end
-
-  def tag
   end
 
   def index

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-public class RemindersFragment extends Fragment{
+public class RemindersFragment extends Fragment {
 
 	View rootView;
 	int courseId;

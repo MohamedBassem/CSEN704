@@ -1,5 +1,12 @@
 class Api::UsersController < Api::ApplicationController
   
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+  end
 
   def create
     @user = User.new(name: params[:name], email: params[:email], password: params[:password])
@@ -21,6 +28,15 @@ class Api::UsersController < Api::ApplicationController
 
   def announcements
     @announcements = current_user.announcements.all
+  end
+
+  def follow
+    Followship.create(follower_id: current_user.id, folloing_id: params[:following_id])
+    render text: ""
+  end
+
+  def followings
+    @users = current_user.users.all
   end
 
 end

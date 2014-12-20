@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :reminders
   has_many :materials
   has_many :sessions
+  has_many :followships
+  has_many :users, :through => :followships
   has_many :sessions
   has_many :answers, dependent: :destroy
   has_many :ratings, dependent: :destroy
@@ -80,5 +82,7 @@ class User < ActiveRecord::Base
   def subscribed_in?(course)
     self.courses.include? course
   end
+
+  
 
 end

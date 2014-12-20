@@ -6,6 +6,8 @@ import com.example.csen704.model.Announcement;
 import com.example.csen704.model.Answer;
 import com.example.csen704.model.Course;
 import com.example.csen704.model.Question;
+import com.example.csen704.model.User;
+
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Field;
@@ -63,4 +65,17 @@ public interface PrivateApiRoutes {
 	
 	@GET("/courses/{course_id}/questions/{question_id}/answers")
 	void getAnswers(@Path("course_id") long courseId, @Path("question_id") long questionId, Callback<List<Answer>> callback);
+	
+	@GET("/users/{user_id}/followings")
+	void getFollowers(@Path("user_id") long userId, Callback<List<User>> callback);
+	
+	@GET("/users")
+	void getUsers(Callback<List<User>> callback);
+	
+	@POST("/users/{user_id}/follow")
+	@FormUrlEncoded
+	void follow(@Path("user_id") long userId, @Field("following_id") long followingId, Callback<Response> callback);
+	
+	
+	
 }

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ApiRouter {
-	private static final String API_BASE_URL = "http://192.168.43.13:3000/api";
+	private static final String API_BASE_URL = "http://50.0.10.117:3000/api";
 
 	private static PublicApiRoutes publicRouter;
 	private static PrivateApiRoutes privateRouter;

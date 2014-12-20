@@ -27,8 +27,6 @@
     <string name="deadline">Deadline</string>
     <string name="announcement_body">Body</string>
 
-    
-
     <!-- Login Fragment -->
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
@@ -60,12 +58,14 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
     <string name="title_activity_create_reminder">CreateReminderActivity</string>
-    
+
     <!-- Reminder -->
     <string name="create_reminder">Add reminder</string>
-    
+
     <!-- Browse Course -->
     <string name="title_activity_browse_courses">Browse Courses</string>
     <string name="subscribe_course">Subscribe</string>
+    <string name="title_activity_friends">Friends</string>
+    <string name="title_activity_uesrs">UesrsActivity</string>
 
 </resources>

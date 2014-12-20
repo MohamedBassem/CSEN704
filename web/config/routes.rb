@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         post 'follow'
         post 'notification_flag'
         get 'notification_flag'
+        get 'tagged_questions'
       end
     end
   end

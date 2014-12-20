@@ -5,19 +5,6 @@ import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
-
-import com.example.csen704.R;
-import com.example.csen704.R.id;
-import com.example.csen704.R.layout;
-import com.example.csen704.R.menu;
-import com.example.csen704.base.BaseActivity;
-import com.example.csen704.fragment.QuestionFragment;
-import com.example.csen704.model.Course;
-import com.example.csen704.model.Question;
-import com.example.csen704.model.User;
-import com.example.csen704.util.ApiRouter;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
@@ -27,6 +14,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.csen704.R;
+import com.example.csen704.base.BaseActivity;
+import com.example.csen704.fragment.QuestionFragment;
+import com.example.csen704.model.Course;
+import com.example.csen704.model.Question;
+import com.example.csen704.model.User;
+import com.example.csen704.util.ApiRouter;
+
 public class ProfileActivity extends BaseActivity {
 	TextView name;
 	Button follow;
@@ -34,7 +29,7 @@ public class ProfileActivity extends BaseActivity {
 	ArrayList<String> questions;
 	LinearLayout subscribedCourses;
 	public static User user;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,19 +38,20 @@ public class ProfileActivity extends BaseActivity {
 		follow = (Button) findViewById(R.id.follow_button);
 		subscribedCourses = (LinearLayout) findViewById(R.id.subscribed_courses);
 		follow.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		name.setText(user.getName());
 		inhabitateCourses();
+		inhabitateQuestions();
 	}
-	
+
 	private void inhabitateQuestions() {
-		
+
 		final BaseActivity self = this;
 		final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
@@ -66,20 +62,20 @@ public class ProfileActivity extends BaseActivity {
 						// TODO Auto-generated method stub
 
 					}
-					
+
 					@Override
 					public void success(List<Question> list,
 							retrofit.client.Response response) {
 						 if (list.size() != 0)
 						 findViewById(R.id.courses_list_header).setVisibility(
 						 View.VISIBLE);
-						
+
 						 for (Question question : list)
 								transaction.add(R.id.tagged_questions_container, new QuestionFragment(question));
 							transaction.commit();
 					}
 				});
-		
+
 	}
 	private void inhabitateCourses() {
 		courses = new ArrayList<String>();
@@ -98,7 +94,7 @@ public class ProfileActivity extends BaseActivity {
 						 if (list.size() != 0)
 						 findViewById(R.id.courses_list_header).setVisibility(
 						 View.VISIBLE);
-						
+
 						for (int i = 0; i < list.size(); i++) {
 							courses.add(list.get(i).getCourseCode() + " - " + list.get(i).getName());
 							for (String course : courses) {

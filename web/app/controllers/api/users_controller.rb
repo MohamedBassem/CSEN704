@@ -31,7 +31,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def follow
-    Followship.create(follower_id: current_user.id, folloing_id: params[:following_id])
+    Followship.create(user_id: current_user.id, folloing_id: params[:following_id])
     render text: ""
   end
 
@@ -47,6 +47,10 @@ class Api::UsersController < Api::ApplicationController
       current_user.save!
       render text: ""
     end
+  end
+
+  def tagged_questions
+    @tagged_questions = User.find(params[:id]).tagged_questions
   end
 
 end

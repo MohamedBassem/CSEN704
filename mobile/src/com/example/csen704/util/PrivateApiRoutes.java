@@ -86,4 +86,9 @@ public interface PrivateApiRoutes {
 	@GET("/users/{user_id}/notification_flag")
 	void getNotificationFlag(@Path("user_id") long userId, Callback<Settings> callback);
 
+	@GET("/users/{user_id}/tagged_questions")
+	void getTaggedQuestions(@Path("user_id") long userId, Callback<List<Question>> callback);
+
+
+
 }

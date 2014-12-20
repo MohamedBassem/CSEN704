@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.csen704.R;
 import com.example.csen704.activity.QuestionActivity;
-import com.example.csen704.base.BasePrivateActivity;
+import com.example.csen704.base.BaseActivity;
 import com.example.csen704.model.Question;
 import com.example.csen704.util.ApiRouter;
 
@@ -59,7 +59,7 @@ public class QuestionFragment extends Fragment{
 
 			@Override
 			public void onClick(View v) {
-					String token = ((BasePrivateActivity) getActivity()).getCurrentUser().getToken();
+					String token = ((BaseActivity) getActivity()).getCurrentUser().getToken();
 					ApiRouter.withToken(token).rateQuestion(question.getCourseId(), question.getId(), 1, new Callback<Response>() {
 
 					@Override

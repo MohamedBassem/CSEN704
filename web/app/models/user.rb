@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :sessions
   has_many :answers, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  has_many :tagged_questions, :foreign_key => 'tagged_id', :class_name => 'Question'
   attr_accessor :password
 
   validates :name, :email, :presence => true

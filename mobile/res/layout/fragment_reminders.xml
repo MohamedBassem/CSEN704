@@ -4,38 +4,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <Button android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_reminder"
-        android:id="@+id/create_reminder_button">
-        
-    </Button>
-    
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/post_background"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-       
-        <LinearLayout
-            android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/create_reminder_button"
             android:layout_width="fill_parent"
-            android:layout_weight="1"
-            android:id="@+id/first_column"
-            android:orientation="vertical">
-            
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_weight="1"
-            android:id="@+id/second_column"
-            android:orientation="vertical">
-            
+            android:layout_gravity="right"
+            android:background="@color/white"
+            android:drawableRight="@drawable/ic_action_new_white"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/post_background"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/first_column"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/second_column"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
         </LinearLayout>
-        
     </LinearLayout>
-    
 
 </ScrollView>

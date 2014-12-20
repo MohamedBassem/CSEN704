@@ -10,7 +10,25 @@
     <string name="courses_list_header">Subscribed Courses:- </string>
     <string name="share">Share to Facebook</string>
     <string name="turn_notifications">Turn Notification On/Off</string>
+
+    <!-- Register Fragment -->
+    <string name="signup">Signup</string>
+    <string name="user_name">Your name</string>
+    <string name="user_mail">Your email</string>
+    <string name="user_birthday">Your birthday</string>
+    <string name="password">Your password</string>
+
+    <!-- create anouncement Fragment -->
+    <string-array name="type_array">
+        <item>Deadline</item>
+        <item>General</item>
+    </string-array>
+
+    <string name="deadline">Deadline</string>
+    <string name="announcement_body">Body</string>
+
     
+
     <!-- Login Fragment -->
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
@@ -20,6 +38,7 @@
     <string name="megaphone_desc">Announcement</string>
     <string name="action_logout">Logout</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="register">Register</string>
 
     <!-- Create x -->
     <string name="cancel">Cancel</string>
@@ -30,13 +49,19 @@
     <string name="course_code">Course Code</string>
     <string name="course_description">Course Description</string>
     <string name="title_activity_create_course">Create Course</string>
-    
-     <!-- Question -->
+
+    <!-- Question -->
     <string name="add_question">Post</string>
     <string name="question_hint">Ask a Question</string>
-    
-     <!-- Answer -->
+
+    <!-- Answer -->
     <string name="add_answer">Post</string>
     <string name="answer_hint">Add an Answer</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
+    <string name="title_activity_create_reminder">CreateReminderActivity</string>
     
+    <!-- Reminder -->
+    <string name="create_reminder">Add reminder</string>
+
 </resources>

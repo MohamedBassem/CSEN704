@@ -1,12 +1,20 @@
 package com.example.csen704.fragment;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 import com.example.csen704.R;
+import com.example.csen704.base.BasePrivateActivity;
+import com.example.csen704.model.Course;
+import com.example.csen704.util.ApiRouter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +24,9 @@ public class CourseFragment extends Fragment {
 	View rootView;
 	CourseFragmentPagerAdapter adapter;
 	ViewPager pager;
+	
 
-	int courseId;
+	long courseId;
 
 
 	public CourseFragment() {
@@ -28,46 +37,53 @@ public class CourseFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_main, container,
 				false);
-		adapter = new CourseFragmentPagerAdapter(getActivity().getSupportFragmentManager(), courseId);
+		
+		courseId = getArguments().getLong("courseId");
+		adapter = new CourseFragmentPagerAdapter((BasePrivateActivity) getActivity(), courseId);
 		pager = (ViewPager) rootView.findViewById(R.id.pager);
 		pager.setAdapter(adapter);
-
-		courseId = getArguments().getInt("courseId");
+		
 
 		return rootView;
 	}
 }
 
 class CourseFragmentPagerAdapter extends FragmentStatePagerAdapter {
-	int couseId;
+	long courseId;
+	Course course;
+	BasePrivateActivity activity;
+	Fragment currentFragment;
 
-    public CourseFragmentPagerAdapter(FragmentManager fm, int courseId) {
-        super(fm);
-        this.couseId = courseId;
+    public CourseFragmentPagerAdapter(BasePrivateActivity activity, long courseId) {
+        super(activity.getSupportFragmentManager());
+        this.courseId = courseId;
+        this.activity = activity;
+   
+        
     }
-
+    
     @Override
     public Fragment getItem(int i) {
 
-    	Fragment f = null;
+    	
     	Bundle bundle = new Bundle();
-    	bundle.putInt("courseId", couseId);
+    	bundle.putLong("courseId", courseId);
     	switch(i){
     	case 0:
-    		f = new CourseInfoFragment();
+    		currentFragment = new CourseInfoFragment();
     		break;
     	case 1:
-    		f = new AnnouncementsFragment();
+    		currentFragment = new AnnouncementsFragment();
     		break;
     	case 2:
-    		f = new QuestionStreamFragment();
+    		currentFragment = new QuestionStreamFragment();
     		break;
     	case 3:
-    		f = new RemindersFragment();
+    		currentFragment = new RemindersFragment();
     		break;
     	}
-    	f.setArguments(bundle);
-    	return f;
+    	currentFragment.setArguments(bundle);
+    	return currentFragment;
     }
 
     @Override

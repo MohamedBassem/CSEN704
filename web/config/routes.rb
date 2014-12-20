@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       member do
         get 'reminders'
         get 'courses'
+        get 'announcements'
       end
     end
   end

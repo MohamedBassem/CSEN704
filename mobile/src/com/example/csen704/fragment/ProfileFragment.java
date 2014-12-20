@@ -240,6 +240,7 @@ public class ProfileFragment extends Fragment {
 								profilePictureView.setProfileId(user.getId());
 								// Set the Textview's text to the user's name.
 								userNameView.setText(user.getName());
+								
 								birthdayView.setText(user.getBirthday());
 
 							}

@@ -7,7 +7,11 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def courses
-    @courses = current_user.subscribing_courses.all
+    @courses = current_user.courses.all
+  end
+
+  def announcements
+    @announcements = current_user.announcements.all
   end
 
 end

@@ -12,12 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.csen704.R;
 import com.example.csen704.base.BaseActivity;
+import com.example.csen704.base.BasePrivateActivity;
 import com.example.csen704.fragment.CourseFragment;
 import com.example.csen704.fragment.MainFragment;
 import com.example.csen704.fragment.ProfileFragment;
@@ -27,7 +29,7 @@ import com.example.csen704.tools.SidebarListAdapter;
 import com.example.csen704.util.ApiRouter;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BasePrivateActivity {
 
 	private final int HOME_ID = -1;
 	private final int CREATE_COURSE_ID = -2;
@@ -56,6 +58,7 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void success(List<Course> list, Response res) {
+			
 				CourseWrapper[] courses = new CourseWrapper[list.size() + 3];
 				courses[0] = new CourseWrapper(getSharedPreferences(Config.SETTING, 0).getString(Config.USERNAME, "UNKNOWN"), PROFILE_ID);
 				courses[1] = new CourseWrapper("Home", HOME_ID);

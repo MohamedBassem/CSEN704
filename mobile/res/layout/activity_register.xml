@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.csen704.activity.RegisterActivity" >
+
+  <LinearLayout
+        android:id="@+id/buttons_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cancelSignup"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0px"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:onClick="cancelRedirect"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="20sp" />
+
+        <View style="@style/dividerVertical" />
+
+        <Button
+            android:id="@+id/signup"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0px"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:onClick="create"
+            android:text="@string/signup"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <View
+        style="@style/Divider"
+        android:layout_below="@+id/buttons_layout" />
+
+     <EditText
+        android:id="@+id/user_name_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttons_layout"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/user_name"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingTop="@dimen/padding_medium" />
+
+    <EditText
+        android:id="@+id/user_mail_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name_edit"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/user_mail"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingLeft="@dimen/padding_medium" />
+
+    <EditText
+        android:id="@+id/user_password_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_mail_edit"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingLeft="@dimen/padding_medium" />
+    
+    <EditText
+        android:id="@+id/user_birhtday_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_password_edit"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/user_birthday"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingLeft="@dimen/padding_medium" />
+    
+    
+
+</RelativeLayout>

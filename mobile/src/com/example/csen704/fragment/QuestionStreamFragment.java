@@ -76,8 +76,9 @@ public class QuestionStreamFragment extends Fragment {
 	}
 
 	private void askQuestion(String body) {
+		String email = ((EditText) rootView.findViewById(R.id.add_tag)).getText().toString();
 		String token = ((BasePrivateActivity) getActivity()).getCurrentUser().getToken();
-		ApiRouter.withToken(token).createCourseQuestion(courseId, body, new Callback<Question>() {
+		ApiRouter.withToken(token).createCourseQuestion(courseId, body, email, new Callback<Question>() {
 
 			@Override
 			public void failure(RetrofitError error) {

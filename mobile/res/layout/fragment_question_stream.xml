@@ -23,6 +23,14 @@
                 android:layout_weight="1"
                 android:hint="@string/question_hint"
                 android:inputType="text" />
+            
+            <EditText
+                android:id="@+id/add_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="tag"
+                android:inputType="text" />
 
             <Button
                 android:id="@+id/add_question_button"

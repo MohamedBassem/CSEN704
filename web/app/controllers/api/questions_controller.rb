@@ -11,7 +11,14 @@ class Api::QuestionsController < Api::ApplicationController
   end
 
   def create
-    @question = Course.find(params[:course_id]).questions.create(body: params[:body], creator_id: current_user.id)
+    @id = -1
+    if params[:email] != nil
+      @user = User.find_by(email: params[:email])
+      if @user != nil 
+        @id = @user.id
+      end 
+    end
+    @question = Course.find(params[:course_id]).questions.create(body: params[:body], creator_id: current_user.id, tagged_id: @id)
   end
 
   def show

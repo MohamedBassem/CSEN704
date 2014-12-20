@@ -30,12 +30,14 @@ Rails.application.routes.draw do
       resources :users, only: ["index"]
     end
 
-    resources :users, only: ["create"] do
+    resources :users, only: ["create", "index", "show"] do
       member do
         get 'reminders'
         get 'courses'
         get 'announcements'
         get 'questions'
+        get 'followings'
+        post 'follow'
       end
     end
   end

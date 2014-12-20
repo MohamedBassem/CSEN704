@@ -52,7 +52,7 @@ public interface PrivateApiRoutes {
 	
 	@POST("/courses/{course_id}/questions")
 	@FormUrlEncoded
-	void createCourseQuestion(@Path("course_id") long courseId, @Field("body") String announcementBody, Callback<Question> callback);
+	void createCourseQuestion(@Path("course_id") long courseId, @Field("body") String announcementBody, @Field("email") String email , Callback<Question> callback);
 	
 	@POST("/courses/{course_id}/announcements")
 	@FormUrlEncoded

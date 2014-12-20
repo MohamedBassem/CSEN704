@@ -16,9 +16,11 @@ import com.example.csen704.util.ApiRouter;
 import com.facebook.widget.UserSettingsFragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,8 +50,19 @@ public class FriendsActivity extends BasePrivateActivity {
 			@Override
 			public void success(List<User> users, Response arg1) {
 				for (User user : users) {
+				final User u = user;
 				TextView txt = new TextView(self);
 				txt.setText(user.getName());
+				txt.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						ProfileActivity.user = u;
+						Intent intent = new Intent(self, ProfileActivity.class);
+						startActivity(intent);
+						
+					}
+				});
 				layout.addView(txt);
 				}
 			}

@@ -13,6 +13,7 @@
 
     <!-- Register Fragment -->
     <string name="signup">Signup</string>
+    <string name="title_activity_profile">PROFILE</string>
     <string name="user_name">Your name</string>
     <string name="user_mail">Your email</string>
     <string name="user_birthday">Your birthday</string>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220170525) do
+ActiveRecord::Schema.define(version: 20141220174240) do
 
   create_table "announcement_reports", force: true do |t|
     t.string   "announcement_id"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20141220170525) do
     t.string   "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tagged_id",  default: 0
   end
 
   create_table "questions_tags", id: false, force: true do |t|

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
 	default_scope {where verified: 1}
   has_many :owned_courses, :foreign_key => 'owner_id', :class_name => 'Course'
-  has_many :course_subscriptions
+  has_many :course_subscriptions, inverse_of: :user
   has_many :courses, :through => :course_subscriptions
   has_many :announcements, :through => :courses
   has_many :questions, :through => :courses

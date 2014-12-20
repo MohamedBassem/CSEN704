@@ -1,17 +1,18 @@
 class Api::CoursesController < Api::ApplicationController
 
-  def subscribe
-  
-  end
+  before_action :autheticate_user!
 
-  def unsubscribe
+  def subscribe
+    course = Course.find(params[:id])
+    current_user.ask_to_follow course
+    render text: ""
   end
 
   def invite
   end
 
   def index
-  
+    @courses = Course.all
   end
 
   def create

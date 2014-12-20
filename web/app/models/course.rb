@@ -13,8 +13,7 @@ class Course < ActiveRecord::Base
     subscritpion = CourseSubscription.new
     subscritpion.user = user
     subscritpion.course = self
-    subscritpion.accepted = 0
-    self.course_subscriptions << @subscritpion
+    subscritpion.accepted = 1
     subscritpion.save
   end
 

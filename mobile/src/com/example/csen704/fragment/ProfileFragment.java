@@ -272,7 +272,7 @@ public class ProfileFragment extends Fragment {
 								userNameView.setText(user.getName());
 
 								birthdayView.setText(user.getBirthday());
-
+								
 							}
 						}
 						if (response.getError() != null) {

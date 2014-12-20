@@ -8,23 +8,36 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.csen704.R;
 import com.example.csen704.activity.Config;
+import com.example.csen704.activity.CreateCourseActivity;
+import com.example.csen704.base.BaseActivity;
+import com.example.csen704.model.Course;
+import com.example.csen704.tools.CourseWrapper;
+import com.example.csen704.tools.SidebarListAdapter;
+import com.example.csen704.util.ApiRouter;
 import com.facebook.FacebookRequestError;
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -44,7 +57,8 @@ public class ProfileFragment extends Fragment {
 	private View view;
 	private LinearLayout subscribed_courses;
 	private Button shareButton;
-	private static final List<String> PERMISSIONS = Arrays.asList("publish_actions");
+	private static final List<String> PERMISSIONS = Arrays
+			.asList("publish_actions");
 	private static final String PENDING_PUBLISH_KEY = "pendingPublishReauthorization";
 	private boolean pendingPublishReauthorization = false;
 	private static final String TAG = "MainFragment";
@@ -84,12 +98,13 @@ public class ProfileFragment extends Fragment {
 		inhabitateCourses();
 
 		shareButton = (Button) view.findViewById(R.id.shareButton);
-		if(getActivity().getSharedPreferences(Config.SETTING, 0).getBoolean(Config.LOGGED_IN_FB, false)){
+		if (getActivity().getSharedPreferences(Config.SETTING, 0).getBoolean(
+				Config.LOGGED_IN_FB, false)) {
 			shareButton.setOnClickListener(new View.OnClickListener() {
-			    @Override
-			    public void onClick(View v) {
-			       alert();
-			    }
+				@Override
+				public void onClick(View v) {
+					alert();
+				}
 			});
 
 			Session session = Session.getActiveSession();
@@ -99,33 +114,37 @@ public class ProfileFragment extends Fragment {
 			}
 
 			if (savedInstanceState != null) {
-			    pendingPublishReauthorization =
-			        savedInstanceState.getBoolean(PENDING_PUBLISH_KEY, false);
+				pendingPublishReauthorization = savedInstanceState.getBoolean(
+						PENDING_PUBLISH_KEY, false);
 			}
-		}else{
+		} else {
 			shareButton.setVisibility(View.GONE);
 		}
 		return view;
 	}
 
-	public void alert(){
-	    final EditText input = new EditText(getActivity());
+	public void alert() {
+		final EditText input = new EditText(getActivity());
 		AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 		alert.setTitle("Update Status")
-	    .setMessage("What's on your mind?")
-	    .setView(input)
-	    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	        @Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-	            value = input.getText().toString();
-	            publishStory();
-	        }
-	    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-	        @Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-	        }
-	    }).show();
+				.setMessage("What's on your mind?")
+				.setView(input)
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						value = input.getText().toString();
+						publishStory();
+					}
+				})
+				.setNegativeButton("Cancel",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
+							}
+						}).show();
 	}
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -136,91 +155,102 @@ public class ProfileFragment extends Fragment {
 
 	private void inhabitateCourses() {
 		courses = new ArrayList<String>();
-		courses.add("DMET 502 - Computer Graphics");
-		courses.add("CSEN 701 - Embedded Systems");
-		courses.add("CSEN 702 - Microprocessors");
-		courses.add("CSEN 703 - Analysis and Design of Algorithms");
-		courses.add("CSEN 704 - Advancd Computer Lab");
+		// courses.add("DMET 502 - Computer Graphics");
+		// courses.add("CSEN 701 - Embedded Systems");
+		// courses.add("CSEN 702 - Microprocessors");
+		// courses.add("CSEN 703 - Analysis and Design of Algorithms");
+		// courses.add("CSEN 704 - Advancd Computer Lab");
+		//
+		// if (courses.size() != 0)
+		// view.findViewById(R.id.courses_list_header).setVisibility(
+		// View.VISIBLE);
+		//
+		// for (String course : courses) {
+		// TextView courseView = new TextView(getActivity());
+		// courseView.setText(course);
+		// courseView.setPadding(
+		// (int) getResources().getDimension(R.dimen.padding_medium),
+		// 0, 0,
+		// 0);
+		// subscribed_courses.addView(courseView);
 
-		if (courses.size() != 0)
-			view.findViewById(R.id.courses_list_header).setVisibility(
-					View.VISIBLE);
+		final BaseActivity self = (BaseActivity) getActivity();
+		ApiRouter.withToken(self.getCurrentUser().getToken()).getCourses(
+				self.getCurrentUser().getId(), new Callback<List<Course>>() {
+					@Override
+					public void failure(RetrofitError error) {
+						// TODO Auto-generated method stub
 
-		for (String course : courses) {
-			TextView courseView = new TextView(getActivity());
-			courseView.setText(course);
-			courseView.setPadding(
-					(int) getResources().getDimension(R.dimen.padding_medium),
-					0, 0,
-					0);
-			subscribed_courses.addView(courseView);
+					}
 
-		}
-
+					@Override
+					public void success(List<Course> list,
+							retrofit.client.Response response) {
+						for (int i = 0; i < list.size(); i++) {
+							courses.add(list.get(i).getCourseCode() + " - " + list.get(i).getName());
+						}
+					}
+				});
 	}
 
-	private boolean isSubsetOf(Collection<String> subset, Collection<String> superset) {
-	    for (String string : subset) {
-	        if (!superset.contains(string)) {
-	            return false;
-	        }
-	    }
-	    return true;
+	private boolean isSubsetOf(Collection<String> subset,
+			Collection<String> superset) {
+		for (String string : subset) {
+			if (!superset.contains(string)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void publishStory() {
-	    Session session = Session.getActiveSession();
+		Session session = Session.getActiveSession();
 
-	    if (session != null){
+		if (session != null) {
 
-	        // Check for publish permissions
-	        List<String> permissions = session.getPermissions();
-	        if (!isSubsetOf(PERMISSIONS, permissions)) {
-	            pendingPublishReauthorization = true;
-	            Session.NewPermissionsRequest newPermissionsRequest = new Session
-	                    .NewPermissionsRequest(this, PERMISSIONS);
-	        session.requestNewPublishPermissions(newPermissionsRequest);
-	            return;
-	        }
+			// Check for publish permissions
+			List<String> permissions = session.getPermissions();
+			if (!isSubsetOf(PERMISSIONS, permissions)) {
+				pendingPublishReauthorization = true;
+				Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
+						this, PERMISSIONS);
+				session.requestNewPublishPermissions(newPermissionsRequest);
+				return;
+			}
 
-	        Bundle postParams = new Bundle();
-	        postParams.putString("message", value);
+			Bundle postParams = new Bundle();
+			postParams.putString("message", value);
 
-
-	        Request.Callback callback= new Request.Callback() {
-	            @Override
+			Request.Callback callback = new Request.Callback() {
+				@Override
 				public void onCompleted(Response response) {
-	                JSONObject graphResponse = response
-	                                           .getGraphObject()
-	                                           .getInnerJSONObject();
-	                String postId = null;
-	                try {
-	                    postId = graphResponse.getString("id");
-	                } catch (JSONException e) {
-	                    Log.i(TAG,
-	                        "JSON error "+ e.getMessage());
-	                }
-	                FacebookRequestError error = response.getError();
-	                if (error != null) {
-	                    Toast.makeText(getActivity()
-	                         .getApplicationContext(),
-	                         error.getErrorMessage(),
-	                         Toast.LENGTH_SHORT).show();
-	                    } else {
-	                        Toast.makeText(getActivity()
-	                             .getApplicationContext(),
-	                             "successfully posted." ,
-	                             Toast.LENGTH_LONG).show();
-	                }
-	            }
-	        };
+					JSONObject graphResponse = response.getGraphObject()
+							.getInnerJSONObject();
+					String postId = null;
+					try {
+						postId = graphResponse.getString("id");
+					} catch (JSONException e) {
+						Log.i(TAG, "JSON error " + e.getMessage());
+					}
+					FacebookRequestError error = response.getError();
+					if (error != null) {
+						Toast.makeText(getActivity().getApplicationContext(),
+								error.getErrorMessage(), Toast.LENGTH_SHORT)
+								.show();
+					} else {
+						Toast.makeText(getActivity().getApplicationContext(),
+								"successfully posted.", Toast.LENGTH_LONG)
+								.show();
+					}
+				}
+			};
 
-	        Request request = new Request(session, "me/feed", postParams,
-	                              HttpMethod.POST, callback);
+			Request request = new Request(session, "me/feed", postParams,
+					HttpMethod.POST, callback);
 
-	        RequestAsyncTask task = new RequestAsyncTask(request);
-	        task.execute();
-	    }
+			RequestAsyncTask task = new RequestAsyncTask(request);
+			task.execute();
+		}
 
 	}
 
@@ -240,7 +270,7 @@ public class ProfileFragment extends Fragment {
 								profilePictureView.setProfileId(user.getId());
 								// Set the Textview's text to the user's name.
 								userNameView.setText(user.getName());
-								
+
 								birthdayView.setText(user.getBirthday());
 
 							}
@@ -259,10 +289,10 @@ public class ProfileFragment extends Fragment {
 			// Get the user's data.
 			makeMeRequest(session);
 		}
-		if (pendingPublishReauthorization &&
-		        state.equals(SessionState.OPENED_TOKEN_UPDATED)) {
-		    pendingPublishReauthorization = false;
-		    publishStory();
+		if (pendingPublishReauthorization
+				&& state.equals(SessionState.OPENED_TOKEN_UPDATED)) {
+			pendingPublishReauthorization = false;
+			publishStory();
 		}
 	}
 
@@ -275,7 +305,7 @@ public class ProfileFragment extends Fragment {
 	@Override
 	public void onSaveInstanceState(Bundle bundle) {
 		super.onSaveInstanceState(bundle);
-	    bundle.putBoolean(PENDING_PUBLISH_KEY, pendingPublishReauthorization);
+		bundle.putBoolean(PENDING_PUBLISH_KEY, pendingPublishReauthorization);
 		uiHelper.onSaveInstanceState(bundle);
 	}
 

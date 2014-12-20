@@ -188,6 +188,15 @@ public class ProfileFragment extends Fragment {
 							retrofit.client.Response response) {
 						for (int i = 0; i < list.size(); i++) {
 							courses.add(list.get(i).getCourseCode() + " - " + list.get(i).getName());
+							for (String course : courses) {
+								 TextView courseView = new TextView(getActivity());
+								 courseView.setText(course);
+								 courseView.setPadding(
+								 (int) getResources().getDimension(R.dimen.padding_medium),
+								 0, 0,
+								 0);
+								 subscribed_courses.addView(courseView);
+							}
 						}
 					}
 				});

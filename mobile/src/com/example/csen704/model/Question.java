@@ -46,5 +46,5 @@ public class Question {
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 }

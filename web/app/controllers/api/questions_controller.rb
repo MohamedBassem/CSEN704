@@ -1,6 +1,9 @@
 class Api::QuestionsController < Api::ApplicationController
 
   def rating
+    @question = Question.find(params[:id])
+    QuestionRating.create!(rating: params[:rating], question: @question, user: current_user)
+    render text: ""
   end
 
   def tag

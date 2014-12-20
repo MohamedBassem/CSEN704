@@ -6,14 +6,6 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import com.example.csen704.R;
-import com.example.csen704.base.BasePrivateActivity;
-import com.example.csen704.model.Announcement;
-import com.example.csen704.model.Question;
-import com.example.csen704.model.User;
-import com.example.csen704.util.ApiRouter;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,7 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.csen704.R;
+import com.example.csen704.base.BasePrivateActivity;
+import com.example.csen704.model.Question;
+import com.example.csen704.model.User;
+import com.example.csen704.util.ApiRouter;
 
 public class QuestionStreamFragment extends Fragment {
 
@@ -57,18 +54,18 @@ public class QuestionStreamFragment extends Fragment {
 		final EditText question = (EditText) rootView.findViewById(R.id.add_question);
 		transaction = getActivity().getSupportFragmentManager().beginTransaction();
 		askButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				askQuestion(question.getText().toString());
-				
+
 			}
 
 		});
 
 		if (courseId == -1) {
 			loadUserQuestions();
-		} else {			
+		} else {
 			load();
 		}
 
@@ -82,7 +79,7 @@ public class QuestionStreamFragment extends Fragment {
 			@Override
 			public void failure(RetrofitError error) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -90,20 +87,20 @@ public class QuestionStreamFragment extends Fragment {
 				transaction = getActivity().getSupportFragmentManager().beginTransaction();
 				transaction.add(R.id.questions_container, new QuestionFragment(question));
 				transaction.commit();
-				
-				
+
+
 			}
 		});
 	}
-	
+
 	public void renderStream() {
-	
+
 		for (Question question : questions)
 			transaction.add(R.id.questions_container, new QuestionFragment(question));
 		transaction.commit();
 	}
-	
-	
+
+
 	private void loadUserQuestions() {
 		if (loadFlag) {
 			return;
@@ -116,6 +113,7 @@ public class QuestionStreamFragment extends Fragment {
 			public void success(List<Question> list, Response res) {
 				loadFlag = false;
 				questions = list;
+				Log.e("test", list.get(0).getCourseId()+"");
 				renderStream();
 			}
 

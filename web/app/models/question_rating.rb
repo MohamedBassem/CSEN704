@@ -6,11 +6,4 @@ class QuestionRating < Rating
   validate :question, presence: true
   validate :user, presence: true
 
-  def user
-    user
-  end
-
-  def question
-    question
-  end
 end

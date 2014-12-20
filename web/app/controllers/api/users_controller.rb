@@ -1,9 +1,14 @@
 class Api::UsersController < Api::ApplicationController
+  
 
-  def index
+  def create
+    @user = User.new(name: params[:name], email: params[:email], password: params[:password])
+    @user.save
+    render text: ""
   end
 
   def reminders
+    @reminders = current_user.remainders
   end
 
   def courses

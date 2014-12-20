@@ -1,7 +1,5 @@
 package com.example.csen704.base;
 
-import java.util.Map.Entry;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -15,11 +13,9 @@ import android.widget.Toast;
 
 import com.example.csen704.R;
 import com.example.csen704.activity.BrowseCoursesActivity;
-import com.example.csen704.activity.Config;
 import com.example.csen704.activity.LoginActivity;
 import com.example.csen704.activity.SettingsActivity;
 import com.example.csen704.model.User;
-import com.facebook.Session;
 
 public abstract class BaseActivity extends FragmentActivity {
 	private static final String PREF_USER_ID = "PREF_USER_ID";
@@ -57,17 +53,7 @@ public abstract class BaseActivity extends FragmentActivity {
 		}else if (id == R.id.action_settings) {
 			startActivity(new Intent(this, SettingsActivity.class));
 		}else if(id == R.id.action_logout){
-			SharedPreferences sessionIDPrefs = getSharedPreferences(
-					Config.SETTING, 0);
-			SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
-			for( Entry<String, ?> z : getSharedPreferences(Config.SETTING, 0).getAll().entrySet() ){
-				prefsEditor.remove(z.getKey());
-			}
-			prefsEditor.commit();
-			if (Session.getActiveSession() != null) {
-			    Session.getActiveSession().closeAndClearTokenInformation();
-			}
-			Session.setActiveSession(null);
+			setCurrentUser(null);
 			startActivity(new Intent(this, LoginActivity.class));
 			finish();
 		}

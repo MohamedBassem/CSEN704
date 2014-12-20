@@ -60,9 +60,9 @@
             android:label="@string/title_activity_create_course" >
         </activity>
         <activity
-            android:name="com.example.csen704.activity.RegisterActivity"
+            android:name="com.example.csen704.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName="com.example.csen704.activity.LoginActivity" >
+            android:parentActivityName="com.example.csen704.LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.csen704.activity.LoginActivity" />

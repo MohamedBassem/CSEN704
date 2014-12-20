@@ -22,8 +22,8 @@ class Course < ActiveRecord::Base
     self.materials.create(user: user)
   end
 
-  def add_question(user)
-    self.questions.create(creator: user)
+  def add_question(dict)
+    self.questions.create!(dict)
   end
 
   def accept_subscription(user)

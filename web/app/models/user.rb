@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :course_subscriptions
   has_many :courses, :through => :course_subscriptions
   has_many :announcements, :through => :courses
+  has_many :questions, :through => :courses
   has_many :course_invitations, class_name: "CourseInvitation"
   has_many :reminders
   has_many :materials

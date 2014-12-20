@@ -1,18 +1,37 @@
+
 package com.example.csen704.fragment;
 
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 import com.example.csen704.R;
+import com.example.csen704.base.BasePrivateActivity;
+import com.example.csen704.model.Announcement;
+import com.example.csen704.model.Question;
+import com.example.csen704.model.User;
+import com.example.csen704.util.ApiRouter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class QuestionStreamFragment extends Fragment {
 
 	View rootView;
 	long courseId;
+	boolean loadFlag;
+	List<Question> questions;
+	FragmentTransaction transaction;
 
 	public QuestionStreamFragment() {
 
@@ -34,16 +53,107 @@ public class QuestionStreamFragment extends Fragment {
 			rootView.findViewById(R.id.add_question_box).setVisibility(View.GONE);
 		}
 
-		loadStream();
+		Button askButton = (Button) rootView.findViewById(R.id.add_question_button);
+		final EditText question = (EditText) rootView.findViewById(R.id.add_question);
+		transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		askButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				askQuestion(question.getText().toString());
+				
+			}
+
+		});
+
+		if (courseId == -1) {
+			loadUserQuestions();
+		} else {			
+			load();
+		}
 
 		return rootView;
 	}
 
-	public void loadStream() {
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		for (int i = 0; i < 10; i++)
-			transaction.add(R.id.questions_container, new QuestionFragment());
+	private void askQuestion(String body) {
+		String token = ((BasePrivateActivity) getActivity()).getCurrentUser().getToken();
+		ApiRouter.withToken(token).createCourseQuestion(courseId, body, new Callback<Question>() {
+
+			@Override
+			public void failure(RetrofitError error) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void success(Question question, Response res) {
+				transaction = getActivity().getSupportFragmentManager().beginTransaction();
+				transaction.add(R.id.questions_container, new QuestionFragment(question));
+				transaction.commit();
+				
+				
+			}
+		});
+	}
+	
+	public void renderStream() {
+	
+		for (Question question : questions)
+			transaction.add(R.id.questions_container, new QuestionFragment(question));
 		transaction.commit();
+	}
+	
+	
+	private void loadUserQuestions() {
+		if (loadFlag) {
+			return;
+		}
+		loadFlag = true;
+		User user = ((BasePrivateActivity) getActivity()).getCurrentUser();
+		ApiRouter.withToken(user.getToken()).getUserQuestions(user.getId(), new Callback<List<Question>>() {
+
+			@Override
+			public void success(List<Question> list, Response res) {
+				loadFlag = false;
+				questions = list;
+				renderStream();
+			}
+
+			@Override
+			public void failure(RetrofitError error) {
+				// TODO Auto-generated method stub
+				loadFlag = false;
+			}
+		});
+
+	}
+
+	public void load() {
+		if (loadFlag) {
+			return;
+		}
+		loadFlag = true;
+		Log.v("7asan", "ASDADADADADA");
+		String token = ((BasePrivateActivity) getActivity()).getCurrentUser().getToken();
+		ApiRouter.withToken(token).getCourseQuestions(courseId, new Callback<List<Question>>() {
+
+			@Override
+			public void success(List<Question> list, Response res) {
+				loadFlag = false;
+				questions = list;
+				renderStream();
+			}
+
+			@Override
+			public void failure(RetrofitError error) {
+				// TODO Auto-generated method stub
+				loadFlag = false;
+			}
+		});
 	}
 
 }
+
+
+
+

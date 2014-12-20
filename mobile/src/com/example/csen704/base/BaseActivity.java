@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.example.csen704.R;
+import com.example.csen704.activity.BrowseCoursesActivity;
 import com.example.csen704.activity.Config;
 import com.example.csen704.activity.LoginActivity;
 import com.example.csen704.activity.SettingsActivity;
@@ -51,7 +52,9 @@ public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_browse_courses) {
+			startActivity(new Intent(this, BrowseCoursesActivity.class));
+		}else if (id == R.id.action_settings) {
 			startActivity(new Intent(this, SettingsActivity.class));
 		}else if(id == R.id.action_logout){
 			SharedPreferences sessionIDPrefs = getSharedPreferences(

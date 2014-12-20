@@ -23,12 +23,17 @@ public class BrowseCoursesActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse_courses);
-		load();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		return true;
+	}
+
+	@Override
+	public void onResume(){
+		super.onResume();
+		load();
 	}
 
 	public void load() {
@@ -45,8 +50,13 @@ public class BrowseCoursesActivity extends BaseActivity {
 				for(Course course : courseList){
 					CourseEntryFragment fragment = new CourseEntryFragment();
 					Bundle args = new Bundle();
-					transaction.add(R.id.answers, new CourseEntryFragment());
+					args.putString("course_name", course.getFullName());
+					args.putBoolean("subscribed", course.isSubscribed());
+					args.putLong("course_id", course.getId());
+					fragment.setArguments(args);
+					transaction.add(R.id.courses_container, fragment);
 				}
+				transaction.commit();
 				loadFlag = false;
 			}
 

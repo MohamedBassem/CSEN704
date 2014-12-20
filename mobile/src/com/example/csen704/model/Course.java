@@ -46,4 +46,8 @@ public class Course {
 		this.subscribed = subscribed;
 	}
 
+	public String getFullName(){
+		return this.courseCode + ": " + this.name;
+	}
+
 }

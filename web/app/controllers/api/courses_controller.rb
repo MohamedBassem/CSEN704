@@ -3,10 +3,9 @@ class Api::CoursesController < Api::ApplicationController
   before_action :autheticate_user!
 
   def subscribe
-  
-  end
-
-  def unsubscribe
+    course = Course.find(params[:id])
+    current_user.ask_to_follow course
+    render text: ""
   end
 
   def invite

@@ -60,8 +60,12 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
     <string name="title_activity_create_reminder">CreateReminderActivity</string>
-    <string name="title_activity_browse_courses">Browse Courses</string>
+    
     <!-- Reminder -->
     <string name="create_reminder">Add reminder</string>
+    
+    <!-- Browse Course -->
+    <string name="title_activity_browse_courses">Browse Courses</string>
+    <string name="subscribe_course">Subscribe</string>
 
 </resources>

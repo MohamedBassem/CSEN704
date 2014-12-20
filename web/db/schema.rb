@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220104329) do
+ActiveRecord::Schema.define(version: 20141220110615) do
 
   create_table "announcement_reports", force: true do |t|
     t.string   "announcement_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141220104329) do
 
   create_table "announcements", force: true do |t|
     t.string   "announcement_type"
-    t.string   "body"
+    t.text     "body"
     t.date     "deadline"
     t.integer  "course_id",         null: false
     t.integer  "creator_id"

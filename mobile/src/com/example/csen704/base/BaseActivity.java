@@ -26,6 +26,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	private static final String PREF_USER_NAME = "PREF_USER_NAME";
 	private static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
 	private static final String PREF_USER_TOKEN = "PREF_USER_TOKEN";
+	private static final String PREF_USER_FACEBOOK = "PREF_USER_FACEBOOK";
 
 	private User currentUser;
 	private int inProgress;
@@ -106,19 +107,21 @@ public abstract class BaseActivity extends FragmentActivity {
 		if (currentUser == null) {
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-			if (sharedPreferences.contains(PREF_USER_TOKEN)) {
+			if (sharedPreferences.contains(PREF_USER_FACEBOOK)) {
 				currentUser = new User();
 				currentUser.setId(sharedPreferences.getLong(PREF_USER_ID, 0));
 				currentUser.setName(sharedPreferences.getString(PREF_USER_NAME, null));
 				currentUser.setEmail(sharedPreferences.getString(PREF_USER_EMAIL, null));
-				currentUser.setToken(sharedPreferences.getString(PREF_USER_TOKEN, null));
+//				currentUser.setToken(sharedPreferences.getString(PREF_USER_TOKEN, null));
+				currentUser.setFacebookToken(sharedPreferences.getString(PREF_USER_FACEBOOK, null));
+
 			}
 		}
 
 		return currentUser;
 	}
 
-	protected void setCurrentUser(User user) {
+	public void setCurrentUser(User user) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Editor p = sharedPreferences.edit();
 
@@ -126,7 +129,8 @@ public abstract class BaseActivity extends FragmentActivity {
 			p.putLong(PREF_USER_ID, currentUser.getId());
 			p.putString(PREF_USER_NAME, currentUser.getName());
 			p.putString(PREF_USER_EMAIL, currentUser.getEmail());
-			p.putString(PREF_USER_TOKEN, currentUser.getToken());
+//			p.putString(PREF_USER_TOKEN, currentUser.getToken());
+			p.putString(PREF_USER_FACEBOOK, currentUser.getFacebookToken());
 		}
 		else {
 			p.clear();

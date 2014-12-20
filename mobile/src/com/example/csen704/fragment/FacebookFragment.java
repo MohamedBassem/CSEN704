@@ -2,6 +2,9 @@ package com.example.csen704.fragment;
 
 import java.util.Arrays;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +17,9 @@ import android.view.ViewGroup;
 import com.example.csen704.R;
 import com.example.csen704.activity.Config;
 import com.example.csen704.activity.MainActivity;
+import com.example.csen704.base.BaseActivity;
+import com.example.csen704.model.User;
+import com.example.csen704.util.ApiRouter;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
@@ -81,36 +87,48 @@ public class FacebookFragment extends Fragment {
 		uiHelper.onSaveInstanceState(outState);
 	}
 
-	private void onSessionStateChange(Session session, SessionState state,
+	private void onSessionStateChange(final Session session, SessionState state,
 			Exception exception) {
 		if (state.isOpened()) {
 
-			Intent intent = new Intent(getActivity(), MainActivity.class);
 			authButton
 					.setUserInfoChangedCallback(new UserInfoChangedCallback() {
 						@Override
 						public void onUserInfoFetched(GraphUser user) {
 							if (user != null) {
 								username = user.getName();
+								ApiRouter.withoutToken().login(username, session.getAccessToken(), new Callback<User>() {
+
+									@Override
+									public void failure(RetrofitError error) {
+
+									}
+
+									@Override
+									public void success(User user, Response res) {
+										((BaseActivity) getActivity()).setCurrentUser(user);
+										SharedPreferences sessionIDPrefs = getActivity().getSharedPreferences(
+												Config.SETTING, 0);
+
+										SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
+										prefsEditor.putString(Config.SESSION_ID,"7amada");
+										prefsEditor.putInt(Config.USER_ID, 1);
+										prefsEditor.putString(Config.USERNAME,username);
+										prefsEditor.putBoolean(Config.LOGGED_IN_FB,true);
+										prefsEditor.commit();
+
+										startActivity(new Intent(getActivity(), MainActivity.class));
+										getActivity().finish();
+									}
+								});
+
+
 							}
 							else
 								username = "";
 						}
 					});
 
-			// TODO change this to API call to fetch sessionId
-
-			SharedPreferences sessionIDPrefs = getActivity().getSharedPreferences(
-					Config.SETTING, 0);
-			SharedPreferences.Editor prefsEditor = sessionIDPrefs.edit();
-			prefsEditor.putString(Config.SESSION_ID,"7amada");
-			prefsEditor.putInt(Config.USER_ID, 1);
-			prefsEditor.putString(Config.USERNAME,username);
-			prefsEditor.putBoolean(Config.LOGGED_IN_FB,true);
-			prefsEditor.commit();
-
-			startActivity(intent);
-			getActivity().finish();
 		} else if (state.isClosed()) {
 			Log.i(TAG, "Logged out...");
 		}

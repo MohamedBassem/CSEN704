@@ -6,7 +6,7 @@ class Api::ApplicationController < ActionController::Base
   respond_to :json
 
   def current_user
-    @current_user ||= User.find_by(token: request.headers[:authorization])
+    @current_user ||= User.find_by(facebook_token: request.headers[:authorization])
   end
 
   def autheticate_user!

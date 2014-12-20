@@ -5,6 +5,7 @@ public class User {
 	private String name;
 	private String email;
 	private String token;
+	private String facebookToken;
 
 	public long getId() {
 		return id;
@@ -25,9 +26,15 @@ public class User {
 		this.email = email;
 	}
 	public String getToken() {
-		return token;
+		return facebookToken;
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public String getFacebookToken() {
+		return facebookToken;
+	}
+	public void setFacebookToken(String facebookToken) {
+		this.facebookToken = facebookToken;
 	}
 }

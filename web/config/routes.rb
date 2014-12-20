@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         get 'reminders'
         get 'courses'
         get 'announcements'
+        post 'register'
       end
     end
   end

@@ -45,6 +45,7 @@
         android:visibility="invisible" />
 
     <ScrollView
+        android:id="@+id/courses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/courses_list_header"
@@ -56,6 +57,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
+        
     </ScrollView>
+    
+    
+     <LinearLayout
+            android:id="@+id/tagged_questions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/courses"
+            android:orientation="vertical" >
+        </LinearLayout>
+        
 
 </RelativeLayout>

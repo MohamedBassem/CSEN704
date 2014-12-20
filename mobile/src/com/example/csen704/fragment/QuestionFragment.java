@@ -39,6 +39,7 @@ public class QuestionFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), QuestionActivity.class);
+				QuestionActivity.question = question;
 				startActivity(intent);
 			}
 		});

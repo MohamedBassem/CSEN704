@@ -4,7 +4,7 @@ class Api::SessionsController < Api::ApplicationController
   def create
     @user = User.authenticate(params[:email], params[:password])
     if @user == nil
-      render status: :unauthorized
+      render text: "", status: :unauthorized
     end 
   end
 

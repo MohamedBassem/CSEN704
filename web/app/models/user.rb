@@ -14,14 +14,11 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :ratings, dependent: :destroy
 
-  attr_accessor :password
 
   validates :name, :email, :presence => true
   validates :email, :uniqueness => true
   validates :email, :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :password, :length => {in: 6..30}
 
-  before_save :encrypt_password
   before_create :generate_verification_code
 
   def self.unverified
@@ -33,6 +30,7 @@ class User < ActiveRecord::Base
       if user = User.find_by(email: email)
         if user.valid_password? password
           user.generate_token
+          user.save!
           user
         end
       end
@@ -78,5 +76,8 @@ class User < ActiveRecord::Base
   	self.update(verified: 1)
   end
 
+  def subscribed_in?(course)
+    self.courses.include? course
+  end
 
 end

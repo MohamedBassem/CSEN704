@@ -47,9 +47,9 @@ public class AnnouncementsFragment extends Fragment {
 			courseId = -1;
 		}
 		if (courseId != -1) {
-			rootView.findViewById(R.id.create_announcment_button)
+			rootView.findViewById(R.id.create_announcement_button)
 					.setVisibility(View.VISIBLE);
-			rootView.findViewById(R.id.create_announcment_button)
+			rootView.findViewById(R.id.create_announcement_button)
 					.setOnClickListener(new View.OnClickListener() {
 
 						@Override

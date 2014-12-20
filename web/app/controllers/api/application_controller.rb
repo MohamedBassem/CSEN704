@@ -11,7 +11,8 @@ class Api::ApplicationController < ActionController::Base
 
   def autheticate_user!
     if current_user ==  nil
-      render status: :unauthorized
+      render text: "", status: :unauthorized
+      return false
     end 
   end
 

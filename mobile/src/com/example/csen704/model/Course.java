@@ -7,7 +7,8 @@ public class Course {
 	private String description;
 	private String courseCode;
 	private int ownerId;
-	
+	private boolean subscribed;
+
 	public long getId() {
 		return id;
 	}
@@ -38,5 +39,15 @@ public class Course {
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
 	}
-	
+	public boolean isSubscribed() {
+		return subscribed;
+	}
+	public void setSubscribed(boolean subscribed) {
+		this.subscribed = subscribed;
+	}
+
+	public String getFullName(){
+		return this.courseCode + ": " + this.name;
+	}
+
 }

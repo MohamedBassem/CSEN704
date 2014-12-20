@@ -22,7 +22,4 @@ class Question < ActiveRecord::Base
     creator.name
   end
 
-  def add_answer(user)
-    self.answers.create(user: user)
-  end
 end

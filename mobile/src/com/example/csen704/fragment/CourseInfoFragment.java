@@ -46,6 +46,8 @@ public class CourseInfoFragment extends Fragment {
 		
 		courseName.setText(course.getName());
 		courseCode.setText(course.getCourseCode());
+		if(course.getDescription() == null)
+			courseDescription.setVisibility(View.GONE);
 		courseDescription.setText(course.getDescription());
 	}
 	

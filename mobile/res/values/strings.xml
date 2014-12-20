@@ -63,5 +63,9 @@
     
     <!-- Reminder -->
     <string name="create_reminder">Add reminder</string>
+    
+    <!-- Browse Course -->
+    <string name="title_activity_browse_courses">Browse Courses</string>
+    <string name="subscribe_course">Subscribe</string>
 
 </resources>

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :courses, only: ["create", "show", "index"] do
       member do
         post 'subscribe'
-        delete 'unsubscribe'
         post 'invite'
       end
       resources :announcements, only: ["create", "show", "index"] do

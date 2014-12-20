@@ -1,5 +1,7 @@
 package com.example.csen704.model;
 
+import java.util.List;
+
 public class Course {
 
 	private long id;
@@ -8,6 +10,7 @@ public class Course {
 	private String courseCode;
 	private int ownerId;
 	private boolean subscribed;
+	private List<String> users;
 
 	public long getId() {
 		return id;
@@ -48,6 +51,12 @@ public class Course {
 
 	public String getFullName(){
 		return this.courseCode + ": " + this.name;
+	}
+	public List<String> getUsers() {
+		return users;
+	}
+	public void setUsers(List<String> users) {
+		this.users = users;
 	}
 
 }

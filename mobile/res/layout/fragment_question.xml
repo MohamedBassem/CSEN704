@@ -52,14 +52,13 @@
         android:layout_below="@+id/question_title"
  		/>
 
-    <!-- <Button
-        android:id="@+id/button1"
+    <Button
+        android:id="@+id/upvote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/hr"
         android:layout_alignParentRight="true"
-        android:background="@drawable/arrow_up"
-        android:width="10dp"
-        /> -->
+        android:text="Upvote"
+        />
 
 </RelativeLayout>

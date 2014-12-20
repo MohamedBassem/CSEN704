@@ -21,6 +21,11 @@ class Api::CoursesController < Api::ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    subscriptions = CourseSubscription.where(course_id: @course.id).all
+    @users = []
+    subscriptions.each do |s|
+      @users << s.user.name
+    end
   end
 
 end

@@ -26,6 +26,7 @@
         android:textSize="14sp" />
 
     <LinearLayout
+        android:id="@+id/desc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/course_code"
@@ -43,6 +44,14 @@
             android:paddingLeft="@dimen/padding_medium"
             android:paddingRight="@dimen/padding_medium"
             android:textSize="15sp" />
+    
     </LinearLayout>
-
+    
+     <LinearLayout 
+	        android:id="@+id/subscribers"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_below="@id/desc">
+    </LinearLayout>
 </RelativeLayout>

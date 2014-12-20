@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.example.csen704.R;
 import com.example.csen704.activity.BrowseCoursesActivity;
+import com.example.csen704.activity.FriendsActivity;
 import com.example.csen704.activity.LoginActivity;
 import com.example.csen704.activity.SettingsActivity;
+import com.example.csen704.activity.UesrsActivity;
 import com.example.csen704.model.User;
 
 public abstract class BaseActivity extends FragmentActivity {
@@ -50,6 +52,10 @@ public abstract class BaseActivity extends FragmentActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_browse_courses) {
 			startActivity(new Intent(this, BrowseCoursesActivity.class));
+		}else if (id == R.id.action_followers) {
+			startActivity(new Intent(this, FriendsActivity.class));
+		}else if (id == R.id.action_all_users) {
+			startActivity(new Intent(this, UesrsActivity.class));
 		}else if (id == R.id.action_settings) {
 			startActivity(new Intent(this, SettingsActivity.class));
 		}else if(id == R.id.action_logout){

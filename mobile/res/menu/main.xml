@@ -2,7 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.csen704.MainActivity" >
 	
-    
+   <item
+        android:id="@+id/action_all_users"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="All Users"/>
+  
+    <item
+        android:id="@+id/action_followers"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Followers"/>
+  
     <item
         android:id="@+id/action_browse_courses"
         android:orderInCategory="100"

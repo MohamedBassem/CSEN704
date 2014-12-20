@@ -34,7 +34,6 @@
             android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@color/white"
-            android:onClick="create"
             android:text="@string/signup"
             android:textAlignment="center"
             android:textColor="@color/green"
@@ -79,17 +78,7 @@
         android:inputType="textPassword"
         android:paddingBottom="@dimen/padding_medium"
         android:paddingLeft="@dimen/padding_medium" />
-    
-    <EditText
-        android:id="@+id/user_birhtday_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_password_edit"
-        android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-light"
-        android:hint="@string/user_birthday"
-        android:paddingBottom="@dimen/padding_medium"
-        android:paddingLeft="@dimen/padding_medium" />
+
     
     
 

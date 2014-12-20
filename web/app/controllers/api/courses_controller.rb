@@ -11,7 +11,7 @@ class Api::CoursesController < Api::ApplicationController
   end
 
   def index
-  
+    @courses = Course.all
   end
 
   def create
